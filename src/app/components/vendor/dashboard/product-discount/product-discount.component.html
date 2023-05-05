@@ -2,7 +2,7 @@
   <div class="card-body">
     <owl-carousel-o [options]="owlcarousel1Options">
       <ng-container *ngFor="let d of discount">
-        <ng-template carouselSlide [id]="d.id">
+        <ng-template carouselSlide [id]="d.id">  <!-- TODO fix this shit CarouselSlide ID -->
           <div class="item">
             <div class="row discount-block">
               <div class="col-xxl-7 col-xl-8 col-md-6 box-col-7">
