@@ -26,9 +26,10 @@
       top: 5px;
     }
     .sales-small {
-      width: 60px;
-      height: 38px;
+      width: 107px;
       margin: auto;
+      margin-top: -40px;
+      margin-bottom: -20px;
       .ct-bar {
         stroke-width: 3px;
       }
@@ -488,36 +489,36 @@
   }
 }
 @media screen and (max-width: 1660px) and (min-width: 1366px) {
-  .get-support{
-    .support-detail{
-      h5{
+  .get-support {
+    .support-detail {
+      h5 {
         max-width: 88%;
       }
     }
-    .support-sec-img{
+    .support-sec-img {
       width: 120px;
     }
-  } 
-  .special-discount{
-    .img-wrraper{
-      &::before{
+  }
+  .special-discount {
+    .img-wrraper {
+      &::before {
         width: 100px;
         height: 100px;
       }
     }
-    .discount-detail{
-      h3{
+    .discount-detail {
+      h3 {
         font-size: 20px;
       }
-      .timer-sec{
-        li{
+      .timer-sec {
+        li {
           width: 45px;
           height: 45px;
           padding: 6px;
-          &:nth-child(n+2){
+          &:nth-child(n + 2) {
             margin-left: 6px;
           }
-          span{
+          span {
             font-size: 10px;
           }
         }
@@ -554,11 +555,11 @@
   }
 }
 @media screen and (max-width: 1660px) {
-  .invoice-overviwe{
-    #invoice-overviwe-chart{
+  .invoice-overviwe {
+    #invoice-overviwe-chart {
       margin-bottom: -10px;
     }
-  } 
+  }
   .special-discount {
     .discount-detail {
       justify-content: center;

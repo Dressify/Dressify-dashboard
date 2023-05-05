@@ -27,10 +27,19 @@
 @import "../scss/vendors/scrollable";
 @import "vendors/sticky";
 
+// @import "vendors/photoswipe.scss";ERROR Error: Uncaught (in promise): ReferenceError: global is not defined
+
+// ngx-mat-timepicker
+// @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 
 
+// ngx-toast
+// @import "../../../node_modules/ngx-toastr/toastr.css";
+// @import "../../../node_modules/ngx-toastr/toastr-bs4-alert.scss";
 
+// Ngx-Tabset
+// @import "~ngx-tabset/ngx-tabset";
 
 // *** base ***
 @import "base/reset";
