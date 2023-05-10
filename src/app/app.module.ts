@@ -10,13 +10,20 @@ import { LoadingBarModule } from "@ngx-loading-bar/core";
 
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { HttpClientModule } from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { ErrorPageComponent } from "./pages/error-page/error-page.component";
+import {JwtInterceptor} from "./shared/interceptor/jwt.interceptor";
 
 @NgModule({
   declarations: [AppComponent, ErrorPageComponent],
   imports: [BrowserModule, FormsModule, ReactiveFormsModule, AppRoutingModule, RouterModule, SharedModule, OverlayModule, LoadingBarModule, BrowserAnimationsModule, HttpClientModule],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

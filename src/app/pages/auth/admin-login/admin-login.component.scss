@@ -1,0 +1,12 @@
+.form-group .form-control:valid{
+  border-color: #efefef !important;
+  padding-right: inherit !important;
+  background-image: none !important;
+}
+
+.form-group .invalid-backEnd{
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 0.875em;
+  color: #dc3545;
+}
