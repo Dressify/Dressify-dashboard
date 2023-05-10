@@ -7,12 +7,7 @@ import { FullComponent } from './shared/components/layout/full/full.component';
 import { full } from './shared/routes/full';
 const routes: Routes = [
   {
-    path: '', // this is just for testing purposes TODO change default path to the one below
-    redirectTo: 'vendor/dashboard',
-    pathMatch: 'full' 
-  },
-  {
-    path: '', // This is one that should be used
+    path: '',
     redirectTo: 'auth/login',
     pathMatch: 'full'
   },
