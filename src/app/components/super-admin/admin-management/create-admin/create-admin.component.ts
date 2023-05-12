@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {SadminService} from "../../../../shared/services/super-admin/sadmin.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-create-admin',
@@ -15,7 +16,7 @@ export class CreateAdminComponent implements OnInit {
   public show: boolean = false;
   public errors?: any = {}
 
-  constructor(private fb:FormBuilder, private sadmin: SadminService) {
+  constructor(private fb:FormBuilder, private sadmin: SadminService, private toastr: ToastrService) {
     this.createAdminForm = this.fb.group({
       adminName :['',Validators.required],
       email :['',[Validators.required, Validators.email]],
@@ -55,11 +56,27 @@ export class CreateAdminComponent implements OnInit {
       formData.append('photo', this.createAdminForm.value['photo']);
 
       this.sadmin.createAdmin(formData).subscribe(value => {
-        console.log(value)
+        this.errors = {}
+        this.toastr.success("Admin Account is Created successfully", "Success!", {
+          timeOut: 3000,
+          closeButton: true,
+        });
       },error => {
-        console.log(error)
-        console.log(error.error.errors)
-        this.errors = error.error.errors;
+        this.errors = {}
+        
+        if(error?.error?.errors)
+          this.errors = error?.error?.errors;
+
+        let errorLog: string = "failed"
+        if(typeof(error?.error) == "string")
+          errorLog = error?.error
+        if(typeof(error?.error) == "object")
+          errorLog = error?.error?.title
+
+        this.toastr.error(errorLog, "Failed!", {
+          timeOut: 3000,
+          closeButton: true,
+        });
       })
     }
   }
