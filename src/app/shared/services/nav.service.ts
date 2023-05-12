@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { BehaviorSubject, fromEvent, Subject } from "rxjs";
 import { takeUntil, debounceTime } from "rxjs/operators";
+import {AuthService} from "./auth/auth.service";
 
 export interface Menu {
   headTitle1?: string;
@@ -35,7 +36,9 @@ export class NavService {
   // Full screen
   public fullScreen: boolean = false;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private auth:AuthService) {
+    this.menuView()
+    this.auth._role.next(this.auth.getUserRole())
     this.setScreenWidth(window.innerWidth);
     fromEvent(window, "resize")
       .pipe(debounceTime(1000), takeUntil(this.unsubscriber))
@@ -57,6 +60,33 @@ export class NavService {
 
   private setScreenWidth(width: number): void {
     this.screenWidth.next(width);
+  }
+
+  private menuView(){
+    this.auth.role.subscribe(next =>{
+      if(!next) return
+      if(next === "SuperAdmin"){
+        console.log("here")
+        this.MENUITEMS = [...this.SuperAdminMenu]
+        this.items.next(this.MENUITEMS)
+        return;
+      }
+      if(next === "Admin"){
+        this.MENUITEMS = [...this.AdminMenu]
+        this.items.next(this.MENUITEMS)
+        return;
+      }
+      if(next === "Vendor"){
+        this.MENUITEMS = [...this.VendorMenu]
+        this.items.next(this.MENUITEMS)
+        return;
+      }
+      if(next === "Sales"){
+        this.MENUITEMS = [...this.SalesMenu]
+        this.items.next(this.MENUITEMS)
+        return;
+      }
+    })
   }
 
   VendorMenu: Menu[] = [
@@ -140,7 +170,9 @@ export class NavService {
     },
   ];
 
-  MENUITEMS: Menu[] = [...this.VendorMenu, ...this.SalesMenu, ...this.AdminMenu, ...this.SuperAdminMenu] //TODO If statements depending on what user is logged in
+
+  // MENUITEMS: Menu[] = [...this.VendorMenu, ...this.SalesMenu, ...this.AdminMenu, ...this.SuperAdminMenu] //TODO If statements depending on what user is logged in
+  MENUITEMS: Menu[] = []
 
   items = new BehaviorSubject<Menu[]>(this.MENUITEMS);
 }
