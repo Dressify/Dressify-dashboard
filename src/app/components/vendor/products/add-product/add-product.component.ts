@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-add-product',
+  selector: 'app-create-admin',
   templateUrl: './add-product.component.html',
   styleUrls: ['./add-product.component.scss']
 })

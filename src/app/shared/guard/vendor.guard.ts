@@ -11,7 +11,7 @@ export class VendorGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (this.authService.getUserRole() === 'vendor') {
+    if (this.authService.getUserRole() === 'Vendor') {
       return true;
     }
 

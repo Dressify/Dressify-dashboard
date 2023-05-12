@@ -11,7 +11,7 @@ export class SalesGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (this.authService.getUserRole() === 'sales') {
+    if (this.authService.getUserRole() === 'Sales') {
       return true;
     }
 

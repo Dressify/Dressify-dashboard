@@ -66,7 +66,6 @@ export class NavService {
     this.auth.role.subscribe(next =>{
       if(!next) return
       if(next === "SuperAdmin"){
-        console.log("here")
         this.MENUITEMS = [...this.SuperAdminMenu]
         this.items.next(this.MENUITEMS)
         return;
@@ -97,7 +96,7 @@ export class NavService {
       type: "sub",
       active: false,
       children: [
-        { path: "/vendor/product/add-product", title: "Add Product", type: "link" }, //TODO change path Add product
+        { path: "/vendor/product/create-admin", title: "Add Product", type: "link" }, //TODO change path Add product
         { path: "/vendor/product/all-products", title: "All Products", type: "link" }, //TODO change path All Products
         { path: "/vendor/product/product-questions", title: "Product Questions", type: "link" }, //TODO change path product questions
       ],
@@ -163,7 +162,7 @@ export class NavService {
       type: "sub",
       active: false,
       children: [
-        { path: "/sample-page/sample-page1", title: "Create Account", type: "link" }, //TODO change path Create Account
+        { path: "/super-admin/admin-management/create-admin", title: "Create Account", type: "link" },
         { path: "/sample-page/sample-page2", title: "Edit Account", type: "link" }, //TODO change path Edit Account
         { path: "/sample-page/sample-page2", title: "All Accounts", type: "link" }, //TODO change path All Accounts
       ],

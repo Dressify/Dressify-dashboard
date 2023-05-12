@@ -6,7 +6,7 @@ import {ProductQuestionsComponent} from "./product-questions/product-questions.c
 
 const routes: Routes = [
   {
-    path: 'add-product',
+    path: 'create-admin',
     loadChildren: () => import('./add-product/add-product.module').then((m) => m.AddProductModule)
   },
   {

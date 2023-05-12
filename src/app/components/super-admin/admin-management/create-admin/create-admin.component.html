@@ -1,0 +1,93 @@
+<app-breadcrumb [title]="'Add Product'" [user]="'super-admin'" [items]="['Admin Management']" [active_item]="'Create Admin'"></app-breadcrumb>
+<div class="container-fluid add-product">
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="product-info">
+                        <h4>Information</h4>
+                        <form id="adminForm" class="form theme-form" [formGroup]="createAdminForm" (ngSubmit)="onSubmit()">
+                            <div class="product-group">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="exampleFormControlInput1">Admin Name</label>
+                                            <input class="form-control" formControlName="adminName" required id="exampleFormControlInput1" type="text" placeholder="Enter admin name">
+                                            <div *ngIf="createAdminForm?.get('adminName')?.errors && validate" class="invalid-backEnd">Please Enter the admin name.</div>
+                                            <div *ngIf="errors['AdminName']" class="invalid-backEnd">{{errors['AdminName']}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="exampleFormControlTextarea2">Email</label>
+                                            <input class="form-control" formControlName="email" required id="exampleFormControlTextarea2" type="email" placeholder="Enter email">
+                                            <div *ngIf="createAdminForm?.get('email')?.errors && validate" class="invalid-backEnd">Please Enter the email.</div>
+                                            <div *ngIf="errors['Email']" class="invalid-backEnd">{{errors['Email']}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div>
+                                            <label class="form-label" for="exampleFormControlTextarea3">Password</label>
+                                            <div class="input-group">
+                                                <input class="form-control" formControlName="password" required id="exampleFormControlTextarea3" [type]="show ? 'text' : 'password'" placeholder="Enter password">
+                                                <div class="show-hide" (click)="showPassword()" *ngIf="!show"><span class="show"></span></div>
+                                                <div class="show-hide" (click)="showPassword()" *ngIf="show"><span class="Hide"></span></div>
+                                                <div *ngIf="createAdminForm?.get('password')?.errors && validate" class="invalid-backEnd">Please Enter the password.</div>
+                                                <div *ngIf="errors['Password']" class="invalid-backEnd">{{errors['Password']}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="product-info">
+                        <h4>Product Image</h4>
+                        <div class="form theme-form">
+                            <!-- add multiple file dropzone -->
+                            <ngx-dropzone [accept]="'image/*'" (change)="onSelect2($event)" [disableClick]="files2.length != 0">
+                                <ngx-dropzone-label>
+                                    <div>
+                                        <div class="dz-message needsclick ">
+                                            <i class="icon-cloud-up"></i>
+                                            <h6>Drop files here or click to upload.</h6><span class="dz-message needsclick">(This is just a demo dropzone. Selected files are <strong>not</strong> actually uploaded.)</span>
+                                        </div>
+                                    </div>
+                                </ngx-dropzone-label>
+                                <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files2" [file]="f" [removable]="true" (removed)="onRemove2(f)">
+                                    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                                </ngx-dropzone-image-preview>
+                            </ngx-dropzone>
+                        </div>
+                        <div *ngIf="createAdminForm?.get('photo')?.errors && validate" class="invalid-backEnd form-group">
+                            <div class="invalid-backEnd">Admin image is required!</div>
+                        </div>
+                        <div *ngIf="errors['Photo']" class="form-group">
+                            <div class="invalid-backEnd">{{errors['Photo']}}</div>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <div class="row">
+                            <div class="col">
+                                <div class="text-end">
+                                    <button class="btn btn-primary me-3" form="adminForm" type="submit">Submit</button>
+                                    <button class="btn btn-danger" form="adminForm" (click)="reset()" type="reset">Reset</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
