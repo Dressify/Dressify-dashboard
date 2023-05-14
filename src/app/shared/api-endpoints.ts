@@ -52,7 +52,10 @@ export const apiEndpoints = {
   },
   superAdmin: {
     createAdmin: 'SuperAdmin/CreateAdmin',
-    testSuperAdmin: 'SuperAdmin/TestSUperAdmin',
+    getAllAdmins: 'SuperAdmin/GetAllAdmins',
+    getAdminProfile: 'SuperAdmin/GetAdminProfile',
+    editAdminProfile: 'SuperAdmin/EditAdminProfile',
+    modifyAdminPhoto: 'SuperAdmin/ModifyAdminPhoto',
   },
   vendor: {
     getAllQuestions: 'Vendors/GetAllQuestions',

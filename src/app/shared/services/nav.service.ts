@@ -163,8 +163,8 @@ export class NavService {
       active: false,
       children: [
         { path: "/super-admin/admin-management/create-admin", title: "Create Account", type: "link" },
-        { path: "/sample-page/sample-page2", title: "Edit Account", type: "link" }, //TODO change path Edit Account
-        { path: "/sample-page/sample-page2", title: "All Accounts", type: "link" }, //TODO change path All Accounts
+        { path: "/super-admin/admin-management/all-admins", title: "All Accounts", type: "link" },
+        { path: "/sample-page/sample-page2", title: "Edit Accounts", type: "link" }, //TODO change path All Accounts
       ],
     },
   ];

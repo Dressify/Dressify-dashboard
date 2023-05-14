@@ -1,0 +1,60 @@
+<app-breadcrumb [title]="'All Admins'" [user]="'super-admin'" [items]="['Admin Management']" [active_item]="'All Admins'"></app-breadcrumb>
+<div class="container-fluid list-products">
+   <div class="row">
+     <!-- Individual column searching (text inputs) Starts-->
+     <div class="col-sm-12">
+       <div class="card">
+<!--         <div class="card-header pb-0">-->
+<!--           <h5>Individual column searching (text inputs) </h5><span></span>-->
+<!--          </div>-->
+          <div class="card-body">
+            <div class="table-responsive product-table">
+              <form>
+<!--              <div class="mb-3 row">-->
+<!--               <label for="table-complete-search" class="col-xs-3 col-sm-auto col-form-label">Search:</label>-->
+<!--               <div class="col-xs-3 col-sm-auto">-->
+<!--                 <input id="table-complete-search" type="text" class="form-control" name="searchTerm" [(ngModel)]="service.searchTerm">-->
+<!--               </div>-->
+<!--               <span class="col col-form-label" *ngIf="service.loading$ | async">Loading...</span>-->
+<!--             </div>-->
+             <table class="display dataTables_wrapper no-footer table" id="basic-1">
+               <thead>
+                 <tr>
+                    <th class="sorting_asc" scope="col" >Image</th>
+                   <th class="sorting_asc" scope="col" >Name</th>
+                   <th class="sorting_asc" scope="col" >Email</th>
+                   <th class="sorting_asc" scope="col" >Action</th>
+                 </tr>
+               </thead>
+               <tbody>
+                
+                  <tr class="odd" *ngFor="let admin of admins">
+                    <td class="sorting_1"><a href="e-commerce/product-page"><img src="{{admin.profilePic}}" alt="{{admin.adminName}}"></a></td>
+                    <td class="sorting_1"><a href="e-commerce/product-page">
+                        <h6>{{admin.adminName}}</h6></a></td>
+                    <td class="sorting_1">{{admin.email}}</td>
+                    <td class="sorting_1">
+                      <button class="btn btn-primary btn-xs" type="button" data-original-title="btn btn-danger btn-xs" title="">Edit</button>
+                    </td>
+                  </tr>
+                
+               </tbody>
+             </table>
+             <div class="d-flex justify-content-between p-2">
+              <select class="form-select" style="width: auto" name="pageSize" [(ngModel)]="paginationState.pageSize" (change)="getAdmins()">
+                <option [ngValue]="5">5 items per page</option>
+                <option [ngValue]="10">10 items per page</option>
+                <option [ngValue]="25">25 items per page</option>
+                <option [ngValue]="50">50 items per page</option>
+              </select>
+              <ngb-pagination
+                [collectionSize]="total" [(page)]="paginationState.page" [pageSize]="paginationState.pageSize" (pageChange)="onPageChange($event)" [rotate]="true" [boundaryLinks]="true">
+              </ngb-pagination>
+            </div>
+           </form>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>

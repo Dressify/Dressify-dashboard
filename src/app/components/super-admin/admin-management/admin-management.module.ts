@@ -7,12 +7,13 @@ import {SharedModule} from "../../../shared/shared.module";
 import {NgxDropzoneModule} from "ngx-dropzone";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {AllAdminsComponent} from "./all-admins/all-admins.component";
 
 
 @NgModule({
   declarations: [
       CreateAdminComponent,
-
+      AllAdminsComponent
   ],
   imports: [
     CommonModule,

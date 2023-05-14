@@ -63,7 +63,7 @@ export class CreateAdminComponent implements OnInit {
         });
       },error => {
         this.errors = {}
-        
+
         if(error?.error?.errors)
           this.errors = error?.error?.errors;
 
