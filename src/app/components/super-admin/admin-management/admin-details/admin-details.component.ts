@@ -15,7 +15,7 @@ import {ToastrService} from "ngx-toastr";
 export class AdminDetailsComponent implements OnInit {
   files2: File[] = [];
   modalRef: NgbModalRef
-  admin: admin
+  admin?: admin
   editProfile: FormGroup
 
   public validate = false;
@@ -77,7 +77,9 @@ export class AdminDetailsComponent implements OnInit {
     formData.append('photo', photo);
 
     const headers = new HttpHeaders()
-        .set('adminId', this.admin.adminId)
+    if (this.admin?.adminId){
+      headers.set('adminId', this.admin?.adminId)
+    }
 
     this.sadmin.modifyAdminPhoto(headers, formData).subscribe(data =>{
       console.log(data)

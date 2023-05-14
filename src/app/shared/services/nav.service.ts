@@ -96,7 +96,7 @@ export class NavService {
       type: "sub",
       active: false,
       children: [
-        { path: "/vendor/product/create-admin", title: "Add Product", type: "link" }, //TODO change path Add product
+        { path: "/vendor/product/create-product", title: "Add Product", type: "link" },
         { path: "/vendor/product/all-products", title: "All Products", type: "link" }, //TODO change path All Products
         { path: "/vendor/product/product-questions", title: "Product Questions", type: "link" }, //TODO change path product questions
       ],

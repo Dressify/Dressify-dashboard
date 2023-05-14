@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {apiEndpoints} from "../../api-endpoints";
-import {map, Observable} from "rxjs";
+import {Observable} from "rxjs";
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {admin, getAdmins} from "../../interface/SuperAdmin/admin";
 
