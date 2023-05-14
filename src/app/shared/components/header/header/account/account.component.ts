@@ -12,7 +12,7 @@ export class AccountComponent implements OnInit {
   public userName: string;
   public profileImg: 'assets/images/dashboard/profile.jpg';
 
-  constructor(private auth:AuthService, private router:Router) {
+  constructor(public auth:AuthService, private router:Router) {
 
   }
   ngOnInit(): void {
