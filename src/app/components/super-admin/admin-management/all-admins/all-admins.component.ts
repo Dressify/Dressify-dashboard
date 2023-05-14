@@ -16,10 +16,6 @@ import * as events from "events";
   styleUrls: ['./all-admins.component.scss']
 })
 export class AllAdminsComponent implements OnInit{
-  products$: Observable<productList[]>;
-  total$: Observable<number>;
-
-  public PRODUCTLIST = data.PRODUCTLIST
 
   paginationState: paginationState = {
     page: 1,
@@ -27,32 +23,14 @@ export class AllAdminsComponent implements OnInit{
     searchTerm: ''
   };
 
+  admins: admins[]
   total: number
 
-
-  @ViewChildren(ProductListDirective) headers: QueryList<ProductListDirective>;
-
-  constructor(private sadmin: SadminService, public service: ProductListService) {
-    this.products$ = service.orderList$;
-    this.total$ = service.total$;
+  constructor(private sadmin: SadminService) {
   }
-
-  admins: admins[]
 
   ngOnInit(): void {
     this.getAdmins()
-  }
-
-  onSort({column, direction}: SortEvent) {
-    // resetting other headers
-    this.headers.forEach(header => {
-      if (header.sortable !== column) {
-        header.direction = '';
-      }
-    });
-
-    this.service.sortColumn = column;
-    this.service.sortDirection = direction;
   }
 
   onPageChange(e:number){
@@ -73,6 +51,4 @@ export class AllAdminsComponent implements OnInit{
       console.log(error)
     })
   }
-
-  protected readonly count = count;
 }
