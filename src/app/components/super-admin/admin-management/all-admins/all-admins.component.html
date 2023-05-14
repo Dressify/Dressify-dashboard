@@ -29,12 +29,12 @@
                <tbody>
                 
                   <tr class="odd" *ngFor="let admin of admins">
-                    <td class="sorting_1"><a href="e-commerce/product-page"><img src="{{admin.profilePic}}" alt="{{admin.adminName}}"></a></td>
-                    <td class="sorting_1"><a href="e-commerce/product-page">
+                    <td class="sorting_1"><a [routerLink]="['/super-admin/admin-management/admin', admin.adminId]"><img src="{{admin.profilePic}}" alt="{{admin.adminName}}"></a></td>
+                    <td class="sorting_1"><a [routerLink]="['/super-admin/admin-management/admin', admin.adminId]">
                         <h6>{{admin.adminName}}</h6></a></td>
                     <td class="sorting_1">{{admin.email}}</td>
                     <td class="sorting_1">
-                      <button class="btn btn-primary btn-xs" type="button" data-original-title="btn btn-danger btn-xs" title="">Edit</button>
+                      <button class="btn btn-primary btn-xs" type="button" data-original-title="btn btn-danger btn-xs" [routerLink]="['/super-admin/admin-management/admin', admin.adminId]" title="">Edit</button>
                     </td>
                   </tr>
                 

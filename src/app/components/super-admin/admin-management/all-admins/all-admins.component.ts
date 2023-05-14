@@ -7,7 +7,7 @@ import * as data from '../../../../shared/data/e-commerce/product-list'
 import { ProductListService } from 'src/app/shared/services/product/product-list.service';
 import {SadminService} from "../../../../shared/services/super-admin/sadmin.service";
 import {paginationState} from "../../../../shared/interface/pagination";
-import {admins} from "../../../../shared/interface/SuperAdmin/admin";
+import {admin} from "../../../../shared/interface/SuperAdmin/admin";
 import {HttpParams} from "@angular/common/http";
 import * as events from "events";
 @Component({
@@ -23,7 +23,7 @@ export class AllAdminsComponent implements OnInit{
     searchTerm: ''
   };
 
-  admins: admins[]
+  admins: admin[]
   total: number
 
   constructor(private sadmin: SadminService) {

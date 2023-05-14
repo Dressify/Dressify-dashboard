@@ -1,4 +1,4 @@
-export interface admins {
+export interface admin {
     adminId: string;
     adminName: string;
     email: string;
@@ -7,5 +7,5 @@ export interface admins {
 
 export interface getAdmins{
     count: number;
-    admins: admins[]
+    admins: admin[]
 }

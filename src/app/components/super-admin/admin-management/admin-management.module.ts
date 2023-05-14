@@ -8,12 +8,15 @@ import {NgxDropzoneModule} from "ngx-dropzone";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {AllAdminsComponent} from "./all-admins/all-admins.component";
+import {AdminDetailsComponent} from "./admin-details/admin-details.component";
 
 
 @NgModule({
   declarations: [
       CreateAdminComponent,
-      AllAdminsComponent
+      AllAdminsComponent,
+      AdminDetailsComponent
+
   ],
   imports: [
     CommonModule,
