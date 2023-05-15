@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import {apiEndpoints} from "../../api-endpoints";
 import {Observable} from "rxjs";
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
-import {admin, getAdmins} from "../../interface/SuperAdmin/admin";
+import {getAdmins} from "../../interface/SuperAdmin/super-admin";
+import {admin} from "../../interface/admin/admin";
 
 @Injectable({
   providedIn: 'root'

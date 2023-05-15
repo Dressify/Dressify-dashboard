@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {SadminService} from "../../../../shared/services/super-admin/sadmin.service";
 import {ActivatedRoute} from "@angular/router";
 import {HttpHeaders} from "@angular/common/http";
-import {admin} from "../../../../shared/interface/SuperAdmin/admin";
+import {admin} from "../../../../shared/interface/admin/admin";
 import {NgbModal, NgbModalRef} from "@ng-bootstrap/ng-bootstrap";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ToastrService} from "ngx-toastr";
