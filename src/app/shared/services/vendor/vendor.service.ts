@@ -11,4 +11,8 @@ export class VendorService {
   URL:string = apiEndpoints.baseUrl
 
   constructor(private http :HttpClient) { }
+
+  createProduct(productFormData:FormData){
+    return this.http.post(`${this.URL}${apiEndpoints.vendor.addProduct}`,productFormData)
+  }
 }

@@ -55,6 +55,8 @@ export class CreateAdminComponent implements OnInit {
       formData.append('Password', this.createAdminForm.value['password']);
       formData.append('photo', this.createAdminForm.value['photo']);
 
+      console.log(formData)
+
       this.sadmin.createAdmin(formData).subscribe(value => {
         this.errors = {}
         this.toastr.success("Admin Account is Created successfully", "Success!", {
