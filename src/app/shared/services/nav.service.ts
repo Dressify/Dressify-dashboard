@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { BehaviorSubject, fromEvent, Subject } from "rxjs";
 import { takeUntil, debounceTime } from "rxjs/operators";
+import {AuthService} from "./auth/auth.service";
 
 export interface Menu {
   headTitle1?: string;
@@ -35,7 +36,9 @@ export class NavService {
   // Full screen
   public fullScreen: boolean = false;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private auth:AuthService) {
+    this.menuView()
+    this.auth._role.next(this.auth.getUserRole())
     this.setScreenWidth(window.innerWidth);
     fromEvent(window, "resize")
       .pipe(debounceTime(1000), takeUntil(this.unsubscriber))
@@ -59,6 +62,32 @@ export class NavService {
     this.screenWidth.next(width);
   }
 
+  private menuView(){
+    this.auth.role.subscribe(next =>{
+      if(!next) return
+      if(next === "SuperAdmin"){
+        this.MENUITEMS = [...this.SuperAdminMenu]
+        this.items.next(this.MENUITEMS)
+        return;
+      }
+      if(next === "Admin"){
+        this.MENUITEMS = [...this.AdminMenu]
+        this.items.next(this.MENUITEMS)
+        return;
+      }
+      if(next === "Vendor"){
+        this.MENUITEMS = [...this.VendorMenu]
+        this.items.next(this.MENUITEMS)
+        return;
+      }
+      if(next === "Sales"){
+        this.MENUITEMS = [...this.SalesMenu]
+        this.items.next(this.MENUITEMS)
+        return;
+      }
+    })
+  }
+
   VendorMenu: Menu[] = [
     { path: "/vendor/dashboard", icon: "home", title: "Dashboard", type: "link" },
     {
@@ -67,7 +96,7 @@ export class NavService {
       type: "sub",
       active: false,
       children: [
-        { path: "/vendor/product/add-product", title: "Add Product", type: "link" }, //TODO change path Add product
+        { path: "/vendor/product/create-product", title: "Add Product", type: "link" },
         { path: "/vendor/product/all-products", title: "All Products", type: "link" }, //TODO change path All Products
         { path: "/vendor/product/product-questions", title: "Product Questions", type: "link" }, //TODO change path product questions
       ],
@@ -133,14 +162,15 @@ export class NavService {
       type: "sub",
       active: false,
       children: [
-        { path: "/sample-page/sample-page1", title: "Create Account", type: "link" }, //TODO change path Create Account
-        { path: "/sample-page/sample-page2", title: "Edit Account", type: "link" }, //TODO change path Edit Account
-        { path: "/sample-page/sample-page2", title: "All Accounts", type: "link" }, //TODO change path All Accounts
+        { path: "/super-admin/admin-management/create-admin", title: "Create Account", type: "link" },
+        { path: "/super-admin/admin-management/all-admins", title: "All Accounts", type: "link" }
       ],
     },
   ];
 
-  MENUITEMS: Menu[] = [...this.VendorMenu, ...this.SalesMenu, ...this.AdminMenu, ...this.SuperAdminMenu] //TODO If statements depending on what user is logged in
+
+  // MENUITEMS: Menu[] = [...this.VendorMenu, ...this.SalesMenu, ...this.AdminMenu, ...this.SuperAdminMenu] //TODO If statements depending on what user is logged in
+  MENUITEMS: Menu[] = []
 
   items = new BehaviorSubject<Menu[]>(this.MENUITEMS);
 }

@@ -2,10 +2,182 @@
 <div class="container-fluid add-product">
     <div class="row">
         <div class="col-xl-6">
-            <app-description-category></app-description-category>
+            <div class="card">
+                <div class="card-body">
+                    <div class="product-info">
+                        <h4>Description</h4>
+                        <form id="createProductForm" class="form theme-form" [formGroup]="createProductForm" (ngSubmit)="onSubmit()">
+                            <div class="product-group">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="exampleFormControlInput1">Product Name<span class="text-danger"> *</span></label>
+                                            <input class="form-control" id="exampleFormControlInput1" formControlName="ProductName" type="text" placeholder="Enter product name">
+                                            <div *ngIf="createProductForm?.get('ProductName')?.errors && validate" class="invalid-backEnd">Please Enter the admin name.</div>
+                                            <div *ngIf="errors['ProductName']" class="invalid-backEnd">{{errors['ProductName']}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div>
+                                            <label class="form-label" for="exampleFormControlTextarea2">Product Description<span class="text-danger"> *</span></label>
+                                            <textarea class="form-control" id="exampleFormControlTextarea2" formControlName="Description" rows="3" placeholder="Enter product description"></textarea>
+                                            <div *ngIf="createProductForm?.get('Description')?.errors && validate" class="invalid-backEnd">Please Enter the admin name.</div>
+                                            <div *ngIf="errors['Description']" class="invalid-backEnd">{{errors['Description']}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <h4 class="mt-4">Category</h4>
+                        <div class="form theme-form">
+                            <div class="product-group">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="exampleFormControlSelect3">Gender</label>
+                                            <select class="form-select" id="exampleFormControlSelect3" (input)="addInput('Type', $event)">
+                                                <option selected="selected" disabled>Choose Gender</option>
+                                                <option *ngFor="let gend of gender" [value]="gend.value">{{gend.name}}</option>
+                                            </select>
+                                            <div *ngIf="createProductForm?.get('Type')?.errors && validate" class="invalid-backEnd">Please Enter the admin name.</div>
+                                            <div *ngIf="errors['Type']" class="invalid-backEnd">{{errors['Type']}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="exampleFormControlSelect4">Category</label>
+                                            <select class="form-select" id="exampleFormControlSelect4" (input)="addInput('Category', $event)">
+                                                <option selected disabled>Choose Category</option>
+                                                <option *ngFor="let cate of category" [value]="cate.value">{{cate.name}}</option>
+                                            </select>
+                                            <div *ngIf="createProductForm?.get('Category')?.errors && validate" class="invalid-backEnd">Please Enter the admin name.</div>
+                                            <div *ngIf="errors['Category']" class="invalid-backEnd">{{errors['Category']}}</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="exampleFormControlSelect5">Sub Category</label>
+                                            <select class="form-select" id="exampleFormControlSelect5" (input)="addInput('SubCategory', $event)">
+                                                <option selected disabled>Choose Sub Category</option>
+                                                <option *ngFor="let sub of subCategory" [value]="sub.value">{{sub.name}}</option>
+                                            </select>
+                                            <div *ngIf="createProductForm?.get('SubCategory')?.errors && validate" class="invalid-backEnd">Please Enter the admin name.</div>
+                                            <div *ngIf="errors['SubCategory']" class="invalid-backEnd">{{errors['SubCategory']}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="col-xl-6">
-           <app-size-image></app-size-image>
+            <div class="card">
+                <div class="card-body">
+                    <div class="product-info">
+                        <h4>Product Image<span class="text-danger"> *</span></h4>
+                        <div class="form theme-form">
+                            <!-- add multiple file dropzone -->
+                            <ngx-dropzone [accept]="'image/*'" (change)="onSelect2($event)" [multiple]="true">
+                                <ngx-dropzone-label>
+                                    <div>
+                                        <div class="dz-message needsclick ">
+                                            <i class="icon-cloud-up"></i>
+                                            <h6>Drop files here or click to upload.</h6><span class="dz-message needsclick">(This is just a demo dropzone. Selected files are <strong>not</strong> actually uploaded.)</span>
+                                        </div>
+                                    </div>
+                                </ngx-dropzone-label>
+                                <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files2" [file]="f" [removable]="true" (removed)="onRemove2(f)">
+                                    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                                </ngx-dropzone-image-preview>
+                            </ngx-dropzone>
+                            <div *ngIf="createProductForm?.get('Photos')?.errors && validate" class="invalid-backEnd form-group">
+                                <div class="invalid-backEnd">Admin image is required!</div>
+                            </div>
+                            <div *ngIf="errors['Photos']" class="form-group">
+                                <div class="invalid-backEnd">{{errors['Photos']}}</div>
+                            </div>
+                        </div>
+                        <h4 class="mt-4">Select Size</h4>
+                        <form class="form theme-form">
+                            <div class="product-group">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="exampleFormControlInput10">Price<span class="text-danger"> *</span></label>
+                                            <input class="form-control" id="exampleFormControlInput10" min="1" placeholder="0.00" type="number" (input)="addInput('Price', $event)">
+                                            <div *ngIf="createProductForm?.get('Price')?.errors && validate" class="invalid-backEnd">Please Enter the admin name.</div>
+                                            <div *ngIf="errors['Price']" class="invalid-backEnd">{{errors['Price']}}</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="exampleFormControlInput7">Sale</label>
+                                            <input class="form-control" id="exampleFormControlInput7" min="0" placeholder="0" type="number" (input)="addInput('Sale', $event)">
+                                            <div *ngIf="createProductForm?.get('Sale')?.errors && validate" class="invalid-backEnd">Please Enter the admin name.</div>
+                                            <div *ngIf="errors['Sale']" class="invalid-backEnd">{{errors['Sale']}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="exampleFormControlInput8">Quantity<span class="text-danger"> *</span></label>
+                                            <input class="form-control" id="exampleFormControlInput8" min="0" placeholder="1" type="number" (input)="addInput('Quantity', $event)">
+                                            <div *ngIf="createProductForm?.get('Quantity')?.errors && validate" class="invalid-backEnd">Please Enter the admin name.</div>
+                                            <div *ngIf="errors['Quantity']" class="invalid-backEnd">{{errors['Quantity']}}</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="exampleFormControlInput9">Color</label>
+                                            <input class="form-control" id="exampleFormControlInput9" placeholder="red" type="text" (input)="addInput('Color', $event)">
+                                            <div *ngIf="createProductForm?.get('Color')?.errors && validate" class="invalid-backEnd">Please Enter the admin name.</div>
+                                            <div *ngIf="errors['Color']" class="invalid-backEnd">{{errors['Color']}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">Rentable</label>
+                                            <div class="col">
+                                                <div class="m-t-15 m-checkbox-inline custom-radio-ml">
+                                                    <div class="form-check form-check-inline radio radio-success">
+                                                        <input class="form-check-input" id="radio55" type="radio" name="radio1" [value]="true" (input)="addInput('Rentable', $event)">
+                                                        <label class="form-check-label" for="radio55">Yes</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline radio radio-danger">
+                                                        <input class="form-check-input" id="radio66" type="radio" name="radio1" [value]="false" (input)="addInput('Rentable', $event)" checked="">
+                                                        <label class="form-check-label" for="radio66">No</label>
+                                                    </div>
+                                                    <div *ngIf="createProductForm?.get('Rentable')?.errors && validate" class="invalid-backEnd">Please Enter the admin name.</div>
+                                                    <div *ngIf="errors['Rentable']" class="invalid-backEnd">{{errors['Rentable']}}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="mt-4">
+                        <div class="row">
+                            <div class="col">
+                                <div class="text-end">
+                                    <button class="btn btn-primary me-3" form="createProductForm" type="submit">Add</button>
+                                    <button class="btn btn-danger" form="createProductForm" type="reset" (click)="reset()">Reset</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

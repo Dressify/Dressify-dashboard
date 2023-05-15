@@ -13,10 +13,22 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { ErrorPageComponent } from "./pages/error-page/error-page.component";
 import {JwtInterceptor} from "./shared/interceptor/jwt.interceptor";
+import {ToastrModule} from "ngx-toastr";
 
 @NgModule({
   declarations: [AppComponent, ErrorPageComponent],
-  imports: [BrowserModule, FormsModule, ReactiveFormsModule, AppRoutingModule, RouterModule, SharedModule, OverlayModule, LoadingBarModule, BrowserAnimationsModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AppRoutingModule,
+    RouterModule,
+    SharedModule,
+    OverlayModule,
+    LoadingBarModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+    HttpClientModule],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

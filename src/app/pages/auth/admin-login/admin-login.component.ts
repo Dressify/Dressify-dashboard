@@ -23,6 +23,7 @@ export class AdminLoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.userNavigation(this.auth.getUserRole())
   }
   showPassword() {
     this.show = !this.show;
@@ -33,24 +34,24 @@ export class AdminLoginComponent implements OnInit {
     console.log(this.loginForm.valid)
     if(this.loginForm.valid){
       this.auth.adminLogin(this.loginForm.value).subscribe(value => {
-        if(!value) return;
-
-        if(value.role === 'SuperAdmin'){
-          console.log('Navigating to super-admin page...');
-          this.router.navigate(['/super-admin']);
-          // this.router.navigateByUrl('./super-admin/dashboard');
-          console.log('Navigation successful.');
-          return;
-        }
-
-        if(value.role === 'Admin'){
-          this.router.navigate(['/admin']);
-          return;
-        }
+        this.userNavigation(value.role)
       },error => {
         console.log(error)
         this.error = error.error;
       })
+    }
+  }
+
+  userNavigation(role:string|null){ // TODO unhandled token expire condition
+    if(!role) return;
+
+    if(role === 'SuperAdmin'){
+      this.router.navigate(['/super-admin'])
+      return;
+    }
+
+    if(role === 'Admin'){
+      this.router.navigate(['/admin']);
     }
   }
 

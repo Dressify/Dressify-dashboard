@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {apiEndpoints} from "../../api-endpoints";
-import {BehaviorSubject, delay, delayWhen, map, timer} from "rxjs";
+import {BehaviorSubject, delay, delayWhen, map, Observable, Subject, timer} from "rxjs";
 import {user} from "@angular/fire/auth";
 
 @Injectable({
@@ -11,6 +11,9 @@ export class AuthService {
   URL:string = apiEndpoints.baseUrl
   user?:any
 
+  public readonly _role = new BehaviorSubject<any>(null);
+  public readonly role = this._role.asObservable();
+
   constructor(private http :HttpClient) { }
 
   login(credentials:any){
@@ -19,6 +22,7 @@ export class AuthService {
           console.log(res);
           sessionStorage.setItem('token', res.token);
           sessionStorage.setItem('role', res.role);
+          this._role.next(res.role)
           this.user = res;
           return res;
         })
@@ -30,6 +34,7 @@ export class AuthService {
             console.log(res);
             sessionStorage.setItem('token', res.token);
             sessionStorage.setItem('role', res.role);
+            this._role.next(res.role)
             this.user = res;
             return res;
         })

@@ -19,17 +19,17 @@ export class ErrorPageComponent implements OnInit {
     }
 
     if(role === 'Admin'){
-      this.path = './admin'
+      this.path = '/admin'
       return;
     }
 
     if(role === 'Vendor'){
-      this.path = './vendor'
+      this.path = '/vendor'
       return;
     }
 
     if(role === 'Sales'){
-      this.path = './sales'
+      this.path = '/sales'
       return;
     }
   }

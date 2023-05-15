@@ -17,12 +17,13 @@ export class LoginComponent implements OnInit {
 
   constructor(private fb : FormBuilder,private auth:AuthService,private router:Router) {
     this.loginForm = this.fb.group({
-      UserName :['',Validators.required],
+      stringLogin :['',Validators.required],
       password : ['',Validators.required]
     });
   }
 
   ngOnInit(): void {
+    this.userNavigation(this.auth.getUserRole())
   }
   showPassword() {
     this.show = !this.show;
@@ -33,19 +34,7 @@ export class LoginComponent implements OnInit {
     console.log(this.loginForm.valid)
     if(this.loginForm.valid){
       this.auth.login(this.loginForm.value).subscribe(value => {
-        if(!value) return;
-
-        if(value.role === 'Vendor'){
-          console.log('here')
-          this.router.navigate(['/vendor']);
-          console.log('here')
-          return;
-        }
-
-        if(value.role === 'Sales'){
-          this.router.navigate(['/sales']);
-          return;
-        }
+        this.userNavigation(value.role)
       },error => {
         console.log(error)
         this.error = error.error;
@@ -53,5 +42,17 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  userNavigation(role:string|null){ // TODO unhandled token expire condition
+    if(!role) return;
+
+    if(role === 'Vendor'){
+      this.router.navigate(['/vendor'])
+      return;
+    }
+
+    if(role === 'Sales'){
+      this.router.navigate(['/sales']);
+    }
+  }
 
 }
