@@ -43,7 +43,7 @@ export const apiEndpoints = {
   },
   products: {
     getProductsPage: 'Products/GetProductsPage',
-    getProductDetails: (id: string) => `Products/GetProductDetails/${id}`,
+    getProductDetails: `Products/GetProductDetails`,
     getSuspendedProducts: 'Products/GetSuspendedProducts'
   },
   productsReports: {
@@ -61,6 +61,7 @@ export const apiEndpoints = {
     getAllQuestions: 'Vendors/GetAllQuestions',
     answerQuestion: 'Vendors/AnswearQuestion',
     addProduct: 'Vendors/AddProduct',
+    updateQuantity: 'Vendors/AddQuantity',
     getSuspendedVendor: 'Vendors/GetSuspendedVendor',
     getPendingOrders: 'Vendors/GetPendingOrders',
     confirmPendingOrders: (orderId: string, productId: string) => `Vendors/ConfirmtPendingOrders/${orderId}/${productId}`,

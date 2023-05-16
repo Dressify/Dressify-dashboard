@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {SadminService} from "../../../../shared/services/super-admin/sadmin.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {HttpHeaders} from "@angular/common/http";
 import {admin} from "../../../../shared/interface/admin/admin";
 import {NgbModal, NgbModalRef} from "@ng-bootstrap/ng-bootstrap";
@@ -25,7 +25,8 @@ export class AdminDetailsComponent implements OnInit {
               private route: ActivatedRoute,
               private modalService: NgbModal,
               private fb:FormBuilder,
-              private toastr: ToastrService) {
+              private toastr: ToastrService,
+              private router: Router) {
     this.editProfile = this.fb.group({
       adminId :['',Validators.required],
       adminName :['',Validators.required],
@@ -49,11 +50,12 @@ export class AdminDetailsComponent implements OnInit {
         this.editProfile.get('email')?.setValue(data.email)
       },error => {
         console.log(error)
+        this.router.navigate(['./super-admin'])
       })
 
     }
     else{
-      // TODO Navigate to not found
+      this.router.navigate(['./super-admin'])
     }
   }
 

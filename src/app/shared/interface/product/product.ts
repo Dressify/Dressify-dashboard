@@ -14,6 +14,12 @@ export interface Product {
     productImages: Image[]
 }
 
+export interface ProductDetails {
+    averageRate: number
+    product: Product
+    quantity: number
+}
+
 export interface Image {
     imageExtension: string
     imageID: number

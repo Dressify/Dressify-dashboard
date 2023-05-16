@@ -31,15 +31,15 @@
                                 <tbody *ngIf="products !== undefined">
 
                                 <tr class="odd" *ngFor="let product of products">
-                                    <td class="sorting_1"><a [routerLink]="['/super-admin/admin-management/admin', product.category]"><img src="{{product.productImages.length > 0 ? product.productImages[0].imageUrl : ''}}" alt="{{product.productName}}"></a></td>
-                                    <td class="sorting_1"><a [routerLink]="['/super-admin/admin-management/admin', product.category]">
+                                    <td class="sorting_1"><a [routerLink]="['/vendor/product/product-details', product.productId]"><img src="{{product.productImages.length > 0 ? product.productImages[0].imageUrl : ''}}" alt="{{product.productName}}"></a></td>
+                                    <td class="sorting_1"><a [routerLink]="['/vendor/product/product-details', product.productId]">
                                         <h6>{{product.productName}}</h6></a></td>
                                     <td class="sorting_1">{{product.type}}</td>
                                     <td class="sorting_1">{{product.category}}</td>
                                     <td class="sorting_1">{{product.quantity}}</td>
                                     <td class="sorting_1">{{product.price}}</td>
                                     <td class="sorting_1">
-                                        <button class="btn btn-primary btn-xs" type="button" data-original-title="btn btn-danger btn-xs" [routerLink]="['/super-admin/admin-management/admin', product.category]" title="">Edit</button>
+                                        <button class="btn btn-primary btn-xs" type="button" data-original-title="btn btn-danger btn-xs" [routerLink]="['/vendor/product/product-details', product.productId]" title="">Edit</button>
                                     </td>
                                 </tr>
 
