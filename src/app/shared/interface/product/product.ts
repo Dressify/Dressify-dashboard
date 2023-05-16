@@ -1,20 +1,30 @@
 export interface Product {
-    ProductName: string;
-    Description: string;
-    Price: number;
-    Quantity: number;
-    Sale: number;
-    Rentable: boolean;
-    Color: string;
-    Category: Category;
-    SubCategory: SubCategory
-    Type: Gender
-    Photos: File[]
+    productId: number;
+    vendorId: string;
+    productName: string;
+    description: string;
+    price: number;
+    quantity: number;
+    sale: number;
+    rentable: boolean;
+    color: string;
+    category: Category;
+    subCategory: SubCategory
+    type: Gender
+    productImages: Image[]
+}
+
+export interface Image {
+    imageExtension: string
+    imageID: number
+    imageUrl: string
+    productId: number
+    publicId: string
 }
 
 export interface ListProducts {
     count: number;
-    products: Product[];
+    vendorProducts: Product[];
 }
 
 interface NameValuePair {
