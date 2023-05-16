@@ -39,9 +39,19 @@ export class AllAdminsComponent implements OnInit{
   }
 
   getAdmins(){
-    const params = new HttpParams()
-        .set('PageNumber', this.paginationState.page)
-        .set('PageSize', this.paginationState.pageSize);
+    let params = new HttpParams()
+
+    if (this.paginationState.searchTerm === ''){
+      params = params.set('PageNumber', this.paginationState.page)
+            .set('PageSize', this.paginationState.pageSize)
+    }else{
+      params = params.set('PageNumber', this.paginationState.page)
+            .set('PageSize', this.paginationState.pageSize)
+            .set('SearchTerm', this.paginationState.searchTerm)
+    }
+
+    console.log(params)
+    console.log(this.paginationState)
 
     this.sadmin.listAdmins(params).subscribe(data => {
       console.log(data)
