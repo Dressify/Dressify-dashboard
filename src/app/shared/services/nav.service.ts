@@ -97,11 +97,20 @@ export class NavService {
       active: false,
       children: [
         { path: "/vendor/product/create-product", title: "Add Product", type: "link" },
-        { path: "/vendor/product/all-products", title: "All Products", type: "link" }, //TODO change path All Products
-        { path: "/vendor/product/product-questions", title: "Product Questions", type: "link" }, //TODO change path product questions
+        { path: "/vendor/product/all-products", title: "All Products", type: "link" },
+        { path: "/vendor/product/product-questions", title: "Product Questions", type: "link" },
       ],
     },
-    { path: "/vendor/orders", icon: "page", title: "Orders", type: "link" },
+    {
+      title: "Orders",
+      icon: "page",
+      type: "sub",
+      active: false,
+      children: [
+        { path: "/vendor/orders/all-orders", title: "All Orders", type: "link" },
+        { path: "/vendor/orders/pending-orders", title: "Pending Orders", type: "link" },
+      ],
+    },
   ];
 
   SalesMenu: Menu[] = [

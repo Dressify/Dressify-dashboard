@@ -3,25 +3,29 @@ import { CommonModule } from '@angular/common';
 
 import { OrdersRoutingModule } from './orders-routing.module';
 import {SharedModule} from "../../../shared/shared.module";
-import {OrdersComponent} from "./orders.component";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {OrderHistoryService} from "../../../shared/services/product/order-history.service";
 import {ProductListService} from "../../../shared/services/product/product-list.service";
-import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
+import {NgbActiveModal, NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {ProductService} from "../../../shared/services/product/product.service";
 import {OrderHistoryDirective} from "../../../shared/directive/order-history.directive";
+import {AllOrdersComponent} from "./all-orders/all-orders.component";
+import {PendingOrdersComponent} from "./pending-orders/pending-orders.component";
 
 
 @NgModule({
   declarations: [
-      OrdersComponent,
-      OrderHistoryDirective
+      OrderHistoryDirective,
+      AllOrdersComponent,
+      PendingOrdersComponent
   ],
   imports: [
     CommonModule,
     OrdersRoutingModule,
     SharedModule,
     FormsModule,
+    ReactiveFormsModule,
+    NgbModule,
   ],
   // providers:[
   //   NgbActiveModal,
