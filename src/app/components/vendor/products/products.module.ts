@@ -11,6 +11,7 @@ import {NgxDropzoneModule} from "ngx-dropzone";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {ProductPageComponent} from "./product-page/product-page.component";
 import {CarouselModule} from "ngx-owl-carousel-o";
+import {QuestionAnswerComponent} from "./question-answer/question-answer.component";
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import {CarouselModule} from "ngx-owl-carousel-o";
     AddProductComponent,
     AllProductsComponent,
     ProductQuestionsComponent,
-    ProductPageComponent
+    ProductPageComponent,
+    QuestionAnswerComponent
   ],
   imports: [
     CommonModule,

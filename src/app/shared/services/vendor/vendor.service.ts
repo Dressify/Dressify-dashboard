@@ -3,6 +3,7 @@ import {apiEndpoints} from "../../api-endpoints";
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {ListProducts, Product, ProductDetails} from "../../interface/product/product";
+import {AllQuestions, Question, QuestionAnswer} from "../../interface/user/user";
 
 
 @Injectable({
@@ -28,5 +29,17 @@ export class VendorService {
 
   updateQuantity(params:HttpParams){
     return this.http.put<ProductDetails>(`${this.URL}${apiEndpoints.vendor.updateQuantity}`,'' , {params})
+  }
+
+  getAllQuestions(params:HttpParams){
+    return this.http.get<AllQuestions>(`${this.URL}${apiEndpoints.vendor.getAllQuestions}`, {params})
+  }
+
+  getQuestionById(params:HttpParams){
+    return this.http.get<Question>(`${this.URL}${apiEndpoints.vendor.getQuestion}`, {params})
+  }
+
+  answerQuestion(answer:any){
+    return this.http.put<QuestionAnswer>(`${this.URL}${apiEndpoints.vendor.answerQuestion}`, answer)
   }
 }

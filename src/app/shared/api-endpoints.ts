@@ -59,7 +59,8 @@ export const apiEndpoints = {
   },
   vendor: {
     getAllQuestions: 'Vendors/GetAllQuestions',
-    answerQuestion: 'Vendors/AnswearQuestion',
+    getQuestion: 'Vendors/GetQuestionById',
+    answerQuestion: 'Vendors/AnswerQuestion',
     addProduct: 'Vendors/AddProduct',
     updateQuantity: 'Vendors/AddQuantity',
     getSuspendedVendor: 'Vendors/GetSuspendedVendor',
