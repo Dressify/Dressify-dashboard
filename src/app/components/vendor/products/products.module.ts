@@ -9,13 +9,18 @@ import {SharedModule} from "../../../shared/shared.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NgxDropzoneModule} from "ngx-dropzone";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {ProductPageComponent} from "./product-page/product-page.component";
+import {CarouselModule} from "ngx-owl-carousel-o";
+import {QuestionAnswerComponent} from "./question-answer/question-answer.component";
 
 
 @NgModule({
   declarations: [
     AddProductComponent,
     AllProductsComponent,
-    ProductQuestionsComponent
+    ProductQuestionsComponent,
+    ProductPageComponent,
+    QuestionAnswerComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +29,8 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
     NgxDropzoneModule,
     FormsModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    CarouselModule
   ]
 })
 export class ProductsModule { }

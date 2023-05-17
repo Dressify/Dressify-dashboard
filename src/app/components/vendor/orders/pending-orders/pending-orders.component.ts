@@ -14,10 +14,10 @@ import {VendorService} from "../../../../shared/services/vendor/vendor.service";
 import {products} from "../../../../shared/data/components/widgest/general/general";
 @Component({
   selector: 'app-all-products',
-  templateUrl: './all-products.component.html',
-  styleUrls: ['./all-products.component.scss']
+  templateUrl: './pending-orders.component.html',
+  styleUrls: ['./pending-orders.component.scss']
 })
-export class AllProductsComponent {
+export class PendingOrdersComponent {
 
   paginationState: paginationState = {
     page: 1,
