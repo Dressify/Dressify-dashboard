@@ -137,9 +137,8 @@ export class NavService {
       type: "sub",
       active: false,
       children: [
-        { path: "/sample-page/sample-page1", title: "Create Account", type: "link" }, //TODO change path Create Account
-        { path: "/sample-page/sample-page2", title: "Edit Account", type: "link" }, //TODO change path Edit Account
-        { path: "/sample-page/sample-page2", title: "All Accounts", type: "link" }, //TODO change path All Accounts
+        { path: "/admin/sales-management/create-sales", title: "Create Account", type: "link" },
+        { path: "/admin/sales-management/all-sales", title: "All Accounts", type: "link" }
       ],
     },
     {

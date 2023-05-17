@@ -1,12 +1,18 @@
 export const apiEndpoints = {
   baseUrl: 'https://localhost:7115/api/',
   admins: {
-    checkReport: (id: string) => `Admins/CheckReport/${id}`,
+    viewAdminProfile: `Admins/ViewAdminProfile`,
+    createSales: `Admins/CreateSales`,
+    getAllSales: `Admins/GetAllSales`,
+    getAllVendors: 'Admins/GetAllVendors',
+    getSalesProfile: `Admins/GetSalesProfile`,
+    editSalesProfile: `Admins/EditSalesProfile`,
+    checkReport: `Admins/CheckReport`,
     actionReport: 'Admins/ActionReport',
     suspendProduct: 'Admins/SuspendProduct',
-    unSuspendedProduct: (id: string) => `Admins/UnSuspendedProduct/${id}`,
+    unSuspendedProduct: `Admins/UnSuspendedProduct`,
     suspendVendor: 'Admins/SuspendVendor',
-    unSuspendedVendor: (id: string) => `Admins/UnSuspendedVendor/${id}`,
+    unSuspendedVendor: `Admins/UnSuspendedVendor`,
   },
   auth: {
     customerRegister: 'Auth/CustRegister',
