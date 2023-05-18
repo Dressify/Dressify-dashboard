@@ -6,7 +6,7 @@ export interface Product {
     price: number;
     quantity: number;
     sale: number;
-    rentable: boolean;
+    purchases: number;
     color: string;
     category: Category;
     subCategory: SubCategory
@@ -31,6 +31,11 @@ export interface Image {
 export interface ListProducts {
     count: number;
     vendorProducts: Product[];
+}
+
+export interface ListSalesProducts {
+    count: number;
+    salesProducts: Product[];
 }
 
 interface NameValuePair {

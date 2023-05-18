@@ -1,0 +1,41 @@
+<app-breadcrumb [title]="'Profile Details'" [user]="'admin'" [items]="['Admin Profile']"
+    [active_item]="'Details'"></app-breadcrumb>
+<div class="container-fluid list-products">
+    <div class="row">
+        <!-- Individual column searching (text inputs) Starts-->
+        <div class="col-sm-12">
+            <div class="card">
+                <!--         <div class="card-header pb-0">-->
+                <!--           <h5>Individual column searching (text inputs) </h5><span></span>-->
+                <!--          </div>-->
+                <div class="card-body">
+                    <div class="table-responsive product-table">
+                        <form>
+
+                            <table class="display dataTables_wrapper no-footer table" id="basic-1">
+                                <thead>
+                                    <tr>
+                                        <th class="sorting_asc" scope="col">Image</th>
+                                        <th class="sorting_asc text-center" scope="col">Name</th>
+                                        <th class="sorting_asc" scope="col">Email</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr class="odd">
+                                        <td class="sorting_1"><a><img src="{{adminProfile.profilePic}}" alt=""></a></td>
+                                        <td class="sorting_1 text-center">{{adminProfile.adminName}}</td>
+                                        <td class="sorting_1">{{adminProfile.email}}</td>
+
+                                    </tr>
+
+                                </tbody>
+                            </table>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LayoutService } from 'src/app/shared/services/layout/layout.service';
 import { NavService } from 'src/app/shared/services/nav.service';
+import {AuthService} from "../../../services/auth/auth.service";
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,7 @@ export class HeaderComponent implements OnInit {
   public dark: boolean = this.layout.config.settings.layout_version == 'dark-only' ? true : false;
 
   collapseSidebar: boolean = true;
-    constructor(private navServices: NavService, public layout: LayoutService) {
+    constructor(private navServices: NavService, public layout: LayoutService, public auth:AuthService) {
   }
 
   sidebarToggle( ) {

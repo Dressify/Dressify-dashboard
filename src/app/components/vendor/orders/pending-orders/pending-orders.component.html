@@ -1,4 +1,4 @@
-<app-breadcrumb [title]="'All products'" [user]="'vendor'" [items]="['Admin Management']" [active_item]="'All products'"></app-breadcrumb>
+<app-breadcrumb [title]="'All Orders'" [user]="'vendor'" [items]="['Order']" [active_item]="'All Orders'"></app-breadcrumb>
 <div class="container-fluid list-products">
     <div class="row">
         <!-- Individual column searching (text inputs) Starts-->
@@ -10,43 +10,37 @@
                 <div class="card-body">
                     <div class="table-responsive product-table">
                         <form>
-                            <div class="mb-3 row">
-                                <label for="table-complete-search" class="col-xs-3 col-sm-auto col-form-label">Search:</label>
-                                <div class="col-xs-3 col-sm-auto">
-                                    <input id="table-complete-search" type="text" class="form-control" placeholder="Search by Product Name" name="searchTerm" [(ngModel)]="paginationState.searchTerm" (change)="getProducts()">
-                                </div>
-                            </div>
                             <table class="display dataTables_wrapper no-footer table" id="basic-1">
                                 <thead>
                                 <tr>
                                     <th class="sorting_asc" scope="col" >Image</th>
-                                    <th class="sorting_asc" scope="col" >Name</th>
-                                    <th class="sorting_asc" scope="col" >Gender</th>
-                                    <th class="sorting_asc" scope="col" >Category</th>
-                                    <th class="sorting_asc" scope="col" >Stock</th>
+                                    <th class="sorting_asc" scope="col" >Product Name</th>
+                                    <th class="sorting_asc" scope="col" >Quantity</th>
                                     <th class="sorting_asc" scope="col" >Price</th>
+                                    <th class="sorting_asc" scope="col" >Total Price</th>
+                                    <th class="sorting_asc" scope="col" >Status</th>
                                     <th class="sorting_asc" scope="col" >Action</th>
                                 </tr>
                                 </thead>
-                                <tbody *ngIf="products !== undefined">
+                                <tbody *ngIf="orders !== undefined">
 
-                                <tr class="odd" *ngFor="let product of products">
-                                    <td class="sorting_1"><a [routerLink]="['/vendor/product/product-details', product.productId]"><img src="{{product.productImages.length > 0 ? product.productImages[0].imageUrl : ''}}" alt="{{product.productName}}"></a></td>
-                                    <td class="sorting_1"><a [routerLink]="['/vendor/product/product-details', product.productId]">
-                                        <h6>{{product.productName}}</h6></a></td>
-                                    <td class="sorting_1">{{product.type}}</td>
-                                    <td class="sorting_1">{{product.category}}</td>
-                                    <td class="sorting_1">{{product.quantity}}</td>
-                                    <td class="sorting_1">{{product.price}}</td>
+                                <tr class="odd" *ngFor="let order of orders">
+                                    <td class="sorting_1"><a [routerLink]="['/vendor/orders/order', order.orderId, order.product.productId]"><img src="{{order.product.productImages.length > 0 ? order.product.productImages[0].imageUrl : ''}}" alt="{{order.productName}}"></a></td>
+                                    <td class="sorting_1"><a [routerLink]="['/vendor/orders/order', order.orderId, order.product.productId]">
+                                        <h6>{{order.productName}}</h6></a></td>
+                                    <td class="sorting_1">{{order.quantity}}</td>
+                                    <td class="sorting_1">${{order.price}}</td>
+                                    <td class="sorting_1">${{order.price * order.quantity}}</td>
+                                    <td class="sorting_1 text-" [ngClass]="{'text-danger': order.status === 'Canceled', 'text-success': order.status === 'Confirmed', 'text-warning': order.status === 'Pending'}">{{order.status}}</td>
                                     <td class="sorting_1">
-                                        <button class="btn btn-primary btn-xs" type="button" data-original-title="btn btn-danger btn-xs" [routerLink]="['/vendor/product/product-details', product.productId]" title="">Edit</button>
+                                        <button class="btn btn-primary btn-xs" type="button" data-original-title="btn btn-danger btn-xs" [routerLink]="['/vendor/orders/order', order.orderId, order.product.productId]" title="">Edit</button>
                                     </td>
                                 </tr>
 
                                 </tbody>
                             </table>
                             <div class="d-flex justify-content-between p-2">
-                                <select class="form-select" style="width: auto" name="pageSize" [(ngModel)]="paginationState.pageSize" (change)="getProducts()">
+                                <select class="form-select" style="width: auto" name="pageSize" [(ngModel)]="paginationState.pageSize" (change)="getOrders()">
                                     <option [ngValue]="5">5 items per page</option>
                                     <option [ngValue]="10">10 items per page</option>
                                     <option [ngValue]="25">25 items per page</option>

@@ -1,12 +1,19 @@
 export const apiEndpoints = {
   baseUrl: 'https://localhost:7115/api/',
   admins: {
-    checkReport: (id: string) => `Admins/CheckReport/${id}`,
+    viewAdminProfile: `Admins/ViewAdminProfile`,
+    createSales: `Admins/CreateSales`,
+    getAllSales: `Admins/GetAllSales`,
+    getAllVendors: 'Admins/GetAllVendors',
+    getSalesProfile: `Admins/GetSalesProfile`,
+    editSalesProfile: `Admins/EditSalesProfile`,
+    checkReport: `Admins/CheckReport`,
     actionReport: 'Admins/ActionReport',
     suspendProduct: 'Admins/SuspendProduct',
-    unSuspendedProduct: (id: string) => `Admins/UnSuspendedProduct/${id}`,
+    unSuspendedProduct: `Admins/UnSuspendedProduct`,
     suspendVendor: 'Admins/SuspendVendor',
-    unSuspendedVendor: (id: string) => `Admins/UnSuspendedVendor/${id}`,
+    unSuspendedVendor: `Admins/UnSuspendedVendor`,
+    ViewAdminProfile: 'Admins/ViewAdminProfile'
   },
   auth: {
     customerRegister: 'Auth/CustRegister',
@@ -64,9 +71,25 @@ export const apiEndpoints = {
     addProduct: 'Vendors/AddProduct',
     updateQuantity: 'Vendors/AddQuantity',
     getSuspendedVendor: 'Vendors/GetSuspendedVendor',
+    getOrders: 'Vendors/GetOrders',
     getPendingOrders: 'Vendors/GetPendingOrders',
-    confirmPendingOrders: (orderId: string, productId: string) => `Vendors/ConfirmtPendingOrders/${orderId}/${productId}`,
-    viewOwnProducts: 'Vendors/ViewOwnProducts'
+    getOrderDetails: 'Vendors/GetOrderById',
+    confirmPendingOrders: `Vendors/ConfirmtPendingOrders`,
+    viewOwnProducts: 'Vendors/ViewOwnProducts',
+    viewVendorProfile:'Vendors/ViewVendorProfile',
+    editVendorProfile: 'Vendors/EditVendorProfile'
+  },
+  sales: {
+    getAllQuestions: 'Sales/GetAllQuestions',
+    getQuestion: 'Sales/GetQuestionById',
+    answerQuestion: 'Sales/AnswerQuestion',
+    addProduct: 'Sales/AddProduct',
+    updateQuantity: 'Sales/AddQuantity',
+    getOrders: 'Sales/GetSalesOrders',
+    getPendingOrders: 'Sales/GetPendingSalesOrders',
+    getOrderDetails: 'Sales/GetOrderById',
+    confirmPendingOrders: `Sales/ConfirmPendingOrders`,
+    viewOwnProducts: 'Sales/ViewSalesProducts'
   },
   wishesLists: {
     getCustomerWishList: 'WishesLists/GetCustomerWishList'

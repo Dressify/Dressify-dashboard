@@ -39,9 +39,9 @@
                                 <table>
                                     <tbody>
                                     <tr>
-                                        <td> <b>Availability :</b></td>
-                                        <td *ngIf="product.quantity !== 0" class="txt-success"> In stock</td>
-                                        <td *ngIf="product.quantity <= 5" class="text-warning"> Low in stock</td>
+                                        <td> <b>Availability : </b></td>
+                                        <td *ngIf="product.quantity > 5" class="txt-success"> In stock</td>
+                                        <td *ngIf="product.quantity <= 5 && product.quantity !== 0" class="text-warning"> Low in stock</td>
                                         <td *ngIf="product.quantity === 0" class="text-danger"> Out of stock</td>
                                     </tr>
                                     <tr>
@@ -61,6 +61,10 @@
                                     <tr>
                                         <td> <b>Gender :</b></td>
                                         <td>{{product.type}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td> <b>Number of purchases :</b></td>
+                                        <td>{{product.purchases}}</td>
                                     </tr>
                                     <tr *ngIf="!product.subCategory">
                                         <td> <b>SubCategory :</b></td>

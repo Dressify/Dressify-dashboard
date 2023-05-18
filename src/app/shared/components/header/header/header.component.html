@@ -21,7 +21,7 @@
       <li class="d-md-none resp-serch-input" >
         <app-search-customize></app-search-customize>
       </li>
-      <li class="onhover-dropdown">
+      <li *ngIf="auth.getUserRole() === 'Vendor' || auth.getUserRole() === 'Sales'" class="onhover-dropdown">
         <app-notification></app-notification>
       </li>
       <li class="maximize">

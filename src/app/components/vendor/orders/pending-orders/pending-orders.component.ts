@@ -12,6 +12,7 @@ import {paginationState} from "../../../../shared/interface/pagination";
 import {Product} from "../../../../shared/interface/product/product";
 import {VendorService} from "../../../../shared/services/vendor/vendor.service";
 import {products} from "../../../../shared/data/components/widgest/general/general";
+import {Order} from "../../../../shared/interface/user/user";
 @Component({
   selector: 'app-all-products',
   templateUrl: './pending-orders.component.html',
@@ -25,41 +26,34 @@ export class PendingOrdersComponent {
     searchTerm: ''
   };
 
-  products: Product[]
+  orders: Order[]
   total: number
 
   constructor(private vendor: VendorService) {
   }
 
   ngOnInit(): void {
-    this.getProducts()
+    this.getOrders()
   }
 
   onPageChange(e:number){
     this.paginationState.page = e;
-    this.getProducts();
+    this.getOrders();
   }
 
-  getProducts(){
-    let params = new HttpParams()
-
-    if (this.paginationState.searchTerm === ''){
-      params = params.set('PageNumber', this.paginationState.page)
-          .set('PageSize', this.paginationState.pageSize)
-    }else{
-      params = params.set('PageNumber', this.paginationState.page)
-          .set('PageSize', this.paginationState.pageSize)
-          .set('SearchTerm', this.paginationState.searchTerm)
-    }
+  getOrders(){
+    const params = new HttpParams()
+        .set('PageNumber', this.paginationState.page)
+        .set('PageSize', this.paginationState.pageSize)
 
     console.log(params)
     console.log(this.paginationState)
 
-    this.vendor.listProducts(params).subscribe(data => {
+    this.vendor.getPendingOrders(params).subscribe(data => {
       console.log(data)
-      this.products = data.vendorProducts
-      console.log(this.products)
-      console.log(this.products[0].productImages[0]?.imageUrl)
+      this.orders = data.pendingOrders
+      console.log(this.orders)
+      // console.log(this.orders[0].product.productImages[0].imageUrl)
       this.total = data.count
     }, error => {
       console.log(error)

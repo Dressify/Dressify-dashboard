@@ -1,0 +1,113 @@
+<app-breadcrumb [title]="'Product Page'" [user]="'sales'" [items]="['E - Commerce']" [active_item]="'Product Page'"></app-breadcrumb>
+<div *ngIf="product !== undefined" class="container-fluid">
+    <div class="row product-page-main p-0">
+        <div class="col-xl-5 col-md-6 box-col-6 xl-50">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <owl-carousel-o [options]="owlcarousel2ptions">
+                            <ng-template carouselSlide class="item" *ngFor="let img of product.productImages">
+                                <img [src]="[img.imageUrl]" [alt]="product.productName" />
+                            </ng-template>
+                        </owl-carousel-o>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-5 box-col-12 proorder-xl-3 xl-100">
+            <div class="card">
+                <div class="card-body">
+                    <div class="pro-group pt-0 border-0">
+                        <div class="product-page-details mt-0">
+                            <h3>{{product.productName}}</h3>
+                            <div class="pro-review">
+                                <div class="d-flex">
+                                    <ngb-rating [rate]="rating"></ngb-rating>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-price">${{product.price * ((100 - product.sale)/100) | number: '1.2-2'}}
+                            <del>${{product.price}}</del>
+                        </div>
+                    </div>
+                    <div class="pro-group">
+                        <p>{{product.description}}</p>
+                    </div>
+                    <div class="pro-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <table>
+                                    <tbody>
+                                    <tr>
+                                        <td> <b>Availability : </b></td>
+                                        <td *ngIf="product.quantity > 5" class="txt-success"> In stock</td>
+                                        <td *ngIf="product.quantity <= 5 && product.quantity !== 0" class="text-warning"> Low in stock</td>
+                                        <td *ngIf="product.quantity === 0" class="text-danger"> Out of stock</td>
+                                    </tr>
+                                    <tr>
+                                        <td> <b>Category :</b></td>
+                                        <td>{{product.category}}</td>
+                                    </tr>
+                                    <tr *ngIf="!product.color">
+                                        <td> <b>Color :</b></td>
+                                        <td>{{product.color}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-6">
+                                <table>
+                                    <tbody>
+                                    <tr><td><b>Gender :</b></td><td>{{product.type}}</td></tr>
+                                    <tr>
+                                        <td> <b>Number of purchases :</b></td>
+                                        <td>{{product.purchases}}</td>
+                                    </tr>
+                                    <tr *ngIf="!product.subCategory">
+                                        <td> <b>SubCategory :</b></td>
+                                        <td>{{product.subCategory}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-2 col-md-6 box-col-6 xl-50 proorder-lg-1">
+            <div class="card">
+                <div class="card-body">
+                    <!-- side-bar colleps block stat-->
+                    <div class="collection-filter-block">
+                        <h4 class="mb-4">Change Quantity </h4>
+                        <ul class="pro-services">
+                            <li>
+                                <div class="media"><i data-feather="box"></i>
+                                    <div class="media-body">
+                                        <h5>Current Quantity is <span class="text-primary h3">{{product.quantity}}</span></h5>
+                                    </div>
+                                </div>
+                            </li>
+                            <form class="border-up pt-4" id="updateQuanitity" [formGroup]="updateQuanitity" (ngSubmit)="onSubmit()">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="Raymond">Add more Quantity</label>
+                                            <input class="form-control" formControlName="quantity" min="1" id="Raymond" type="number">
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </ul>
+                        <div class="pro-group pb-0">
+                            <div class="pro-shop">
+                                <button class="btn btn-primary m-r-10" form="updateQuanitity" type="submit"><i class="fa fa-shopping-basket me-2"></i>Add Quantity</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

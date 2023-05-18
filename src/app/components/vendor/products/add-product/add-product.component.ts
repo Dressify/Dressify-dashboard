@@ -39,7 +39,6 @@ export class AddProductComponent implements OnInit {
       Price : ['',Validators.required],
       Quantity: [1, Validators.required],
       Sale: [0, Validators.required],
-      Rentable: [false],
       Color: [null],
       Category: ['', Validators.required],
       SubCategory: [null],
@@ -80,7 +79,6 @@ export class AddProductComponent implements OnInit {
       formData.append('Price', this.createProductForm.value['Price']);
       formData.append('Quantity', this.createProductForm.value['Quantity']);
       formData.append('Sale', this.createProductForm.value['Sale']);
-      formData.append('Rentable', this.createProductForm.value['Rentable']);
       formData.append('Color', this.createProductForm.value['Color']);
       formData.append('Category', this.createProductForm.value['Category']);
       formData.append('SubCategory', this.createProductForm.value['SubCategory']);
