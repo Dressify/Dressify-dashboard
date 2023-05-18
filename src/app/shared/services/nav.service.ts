@@ -121,12 +121,21 @@ export class NavService {
       type: "sub",
       active: false,
       children: [
-        { path: "/sample-page/sample-page1", title: "Add Product", type: "link" }, //TODO change path Add product
-        { path: "/sample-page/sample-page2", title: "All Products", type: "link" }, //TODO change path All Products
-        { path: "/sample-page/sample-page2", title: "Product Questions", type: "link" }, //TODO change path product questions
+        { path: "/sales/product/create-product", title: "Add Product", type: "link" },
+        { path: "/sales/product/all-products", title: "All Products", type: "link" },
+        { path: "/sales/product/product-questions", title: "Product Questions", type: "link" },
       ],
     },
-    { path: "/sales/orders", icon: "page", title: "Orders", type: "link" },
+    {
+      title: "Orders",
+      icon: "page",
+      type: "sub",
+      active: false,
+      children: [
+        { path: "/sales/orders/all-orders", title: "All Orders", type: "link" },
+        { path: "/sales/orders/pending-orders", title: "Pending Orders", type: "link" },
+      ],
+    },
   ];
 
   AdminMenu: Menu[] = [

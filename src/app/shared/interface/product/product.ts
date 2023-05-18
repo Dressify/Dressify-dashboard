@@ -33,6 +33,11 @@ export interface ListProducts {
     vendorProducts: Product[];
 }
 
+export interface ListSalesProducts {
+    count: number;
+    salesProducts: Product[];
+}
+
 interface NameValuePair {
     name: string;
     value: string;

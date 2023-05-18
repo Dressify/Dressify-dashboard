@@ -76,6 +76,18 @@ export const apiEndpoints = {
     confirmPendingOrders: `Vendors/ConfirmtPendingOrders`,
     viewOwnProducts: 'Vendors/ViewOwnProducts'
   },
+  sales: {
+    getAllQuestions: 'Sales/GetAllQuestions',
+    getQuestion: 'Sales/GetQuestionById',
+    answerQuestion: 'Sales/AnswerQuestion',
+    addProduct: 'Sales/AddProduct',
+    updateQuantity: 'Sales/AddQuantity',
+    getOrders: 'Sales/GetSalesOrders',
+    getPendingOrders: 'Sales/GetPendingSalesOrders',
+    getOrderDetails: 'Sales/GetOrderById',
+    confirmPendingOrders: `Sales/ConfirmPendingOrders`,
+    viewOwnProducts: 'Sales/ViewSalesProducts'
+  },
   wishesLists: {
     getCustomerWishList: 'WishesLists/GetCustomerWishList'
   }

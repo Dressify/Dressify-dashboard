@@ -31,11 +31,11 @@ export class NotificationComponent implements OnInit {
 
     if(user === "Vendor"){
       this.vendor.getPendingOrders(params).subscribe(data => {
-        console.log(data)
-        this.orders = data.pendingOrders
-        console.log(this.orders)
-        // console.log(this.orders[0].product.productImages[0].imageUrl)
-        this.total = data.count
+        if(data){
+          this.orders = data.pendingOrders
+          // console.log(this.orders[0].product.productImages[0].imageUrl)
+          this.total = data.count
+        }
       }, error => {
         console.log(error)
       })
@@ -43,7 +43,16 @@ export class NotificationComponent implements OnInit {
     }
 
     if(user === "Sales"){
-
+      this.sales.getPendingOrders(params).subscribe(data => {
+        if(data){
+          this.orders = data.pendingSalesOrders
+          // console.log(this.orders[0].product.productImages[0].imageUrl)
+          this.total = data.count
+        }
+      }, error => {
+        console.log(error)
+      })
+      return;
     }
 
   }

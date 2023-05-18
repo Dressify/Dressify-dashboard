@@ -50,3 +50,8 @@ export interface PendingOrders{
     count: number,
     pendingOrders: Order[]
 }
+
+export interface PendingSalesOrders{
+    count: number,
+    pendingSalesOrders: Order[]
+}

@@ -1,0 +1,59 @@
+<app-breadcrumb [title]="'All Orders'" [user]="'sales'" [items]="['Order']" [active_item]="'All Orders'"></app-breadcrumb>
+<div class="container-fluid list-products">
+    <div class="row">
+        <!-- Individual column searching (text inputs) Starts-->
+        <div class="col-sm-12">
+            <div class="card">
+                <!--         <div class="card-header pb-0">-->
+                <!--           <h5>Individual column searching (text inputs) </h5><span></span>-->
+                <!--          </div>-->
+                <div class="card-body">
+                    <div class="table-responsive product-table">
+                        <form>
+                            <table class="display dataTables_wrapper no-footer table" id="basic-1">
+                                <thead>
+                                <tr>
+                                    <th class="sorting_asc" scope="col" >Image</th>
+                                    <th class="sorting_asc" scope="col" >Product Name</th>
+                                    <th class="sorting_asc" scope="col" >Quantity</th>
+                                    <th class="sorting_asc" scope="col" >Price</th>
+                                    <th class="sorting_asc" scope="col" >Total Price</th>
+                                    <th class="sorting_asc" scope="col" >Status</th>
+                                    <th class="sorting_asc" scope="col" >Action</th>
+                                </tr>
+                                </thead>
+                                <tbody *ngIf="orders !== undefined">
+
+                                <tr class="odd" *ngFor="let order of orders">
+                                    <td class="sorting_1"><a [routerLink]="['/sales/orders/order', order.orderId, order.product.productId]"><img src="{{order.product.productImages.length > 0 ? order.product.productImages[0].imageUrl : ''}}" alt="{{order.productName}}"></a></td>
+                                    <td class="sorting_1"><a [routerLink]="['/sales/orders/order', order.orderId, order.product.productId]">
+                                        <h6>{{order.productName}}</h6></a></td>
+                                    <td class="sorting_1">{{order.quantity}}</td>
+                                    <td class="sorting_1">${{order.price}}</td>
+                                    <td class="sorting_1">${{order.price * order.quantity}}</td>
+                                    <td class="sorting_1 text-" [ngClass]="{'text-danger': order.status === 'Canceled', 'text-success': order.status === 'Confirmed', 'text-warning': order.status === 'Pending'}">{{order.status}}</td>
+                                    <td class="sorting_1">
+                                        <button class="btn btn-primary btn-xs" type="button" data-original-title="btn btn-danger btn-xs" [routerLink]="['/sales/orders/order', order.orderId, order.product.productId]" title="">Edit</button>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                            <div class="d-flex justify-content-between p-2">
+                                <select class="form-select" style="width: auto" name="pageSize" [(ngModel)]="paginationState.pageSize" (change)="getOrders()">
+                                    <option [ngValue]="5">5 items per page</option>
+                                    <option [ngValue]="10">10 items per page</option>
+                                    <option [ngValue]="25">25 items per page</option>
+                                    <option [ngValue]="50">50 items per page</option>
+                                </select>
+                                <ngb-pagination
+                                        [collectionSize]="total" [(page)]="paginationState.page" [pageSize]="paginationState.pageSize" (pageChange)="onPageChange($event)" [rotate]="true" [boundaryLinks]="true">
+                                </ngb-pagination>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

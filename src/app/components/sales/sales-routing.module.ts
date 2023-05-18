@@ -9,6 +9,14 @@ const routes: Routes = [
     path: "dashboard",
     loadChildren: () => import("./dashboard/dashboard.module").then((m) => m.DashboardModule),
   },
+  {
+    path: "product",
+    loadChildren: () => import("./products/products.module").then((m) => m.ProductsModule),
+  },
+  {
+    path: "orders",
+    loadChildren: () => import("./orders/orders.module").then((m) => m.OrdersModule),
+  },
 ];
 
 @NgModule({
