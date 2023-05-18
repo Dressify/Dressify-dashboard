@@ -3,7 +3,7 @@ import {apiEndpoints} from "../../api-endpoints";
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {ListProducts, Product, ProductDetails} from "../../interface/product/product";
-import {AllQuestions, Order, Orders, PendingOrders, Question, QuestionAnswer} from "../../interface/user/user";
+import {AllQuestions, Order, Orders, PendingOrders, Question, QuestionAnswer, Vendor} from "../../interface/user/user";
 
 
 @Injectable({
@@ -57,5 +57,12 @@ export class VendorService {
 
   confirmOrder(params:HttpParams){
     return this.http.put(`${this.URL}${apiEndpoints.vendor.confirmPendingOrders}`, '', {params:params})
+  }
+
+  getVendorProfile():Observable<Vendor>{
+    return this.http.get<Vendor>(`${apiEndpoints.baseUrl}${apiEndpoints.vendor.viewVendorProfile}`);
+  }
+  editVendorProfile(form :Vendor):Observable<Vendor>{
+    return this.http.put<Vendor>(`${apiEndpoints.baseUrl}${apiEndpoints.vendor.editVendorProfile}`,form)
   }
 }

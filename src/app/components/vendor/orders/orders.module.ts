@@ -17,7 +17,6 @@ import {CarouselModule} from "ngx-owl-carousel-o";
 
 @NgModule({
   declarations: [
-      OrderHistoryDirective,
       AllOrdersComponent,
       PendingOrdersComponent,
       OrderDetailsComponent

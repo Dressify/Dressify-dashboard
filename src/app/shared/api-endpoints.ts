@@ -13,6 +13,7 @@ export const apiEndpoints = {
     unSuspendedProduct: `Admins/UnSuspendedProduct`,
     suspendVendor: 'Admins/SuspendVendor',
     unSuspendedVendor: `Admins/UnSuspendedVendor`,
+    ViewAdminProfile: 'Admins/ViewAdminProfile'
   },
   auth: {
     customerRegister: 'Auth/CustRegister',
@@ -74,7 +75,9 @@ export const apiEndpoints = {
     getPendingOrders: 'Vendors/GetPendingOrders',
     getOrderDetails: 'Vendors/GetOrderById',
     confirmPendingOrders: `Vendors/ConfirmtPendingOrders`,
-    viewOwnProducts: 'Vendors/ViewOwnProducts'
+    viewOwnProducts: 'Vendors/ViewOwnProducts',
+    viewVendorProfile:'Vendors/ViewVendorProfile',
+    editVendorProfile: 'Vendors/EditVendorProfile'
   },
   sales: {
     getAllQuestions: 'Sales/GetAllQuestions',
