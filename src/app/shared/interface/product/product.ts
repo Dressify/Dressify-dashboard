@@ -6,6 +6,7 @@ export interface Product {
     price: number;
     quantity: number;
     sale: number;
+    purchases: number;
     rentable: boolean;
     color: string;
     category: Category;

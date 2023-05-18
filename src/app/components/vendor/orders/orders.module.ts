@@ -11,13 +11,16 @@ import {ProductService} from "../../../shared/services/product/product.service";
 import {OrderHistoryDirective} from "../../../shared/directive/order-history.directive";
 import {AllOrdersComponent} from "./all-orders/all-orders.component";
 import {PendingOrdersComponent} from "./pending-orders/pending-orders.component";
+import {OrderDetailsComponent} from "./order-details/order-details.component";
+import {CarouselModule} from "ngx-owl-carousel-o";
 
 
 @NgModule({
   declarations: [
       OrderHistoryDirective,
       AllOrdersComponent,
-      PendingOrdersComponent
+      PendingOrdersComponent,
+      OrderDetailsComponent
   ],
   imports: [
     CommonModule,
@@ -26,6 +29,7 @@ import {PendingOrdersComponent} from "./pending-orders/pending-orders.component"
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
+    CarouselModule
   ],
   // providers:[
   //   NgbActiveModal,

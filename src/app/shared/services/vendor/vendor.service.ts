@@ -56,6 +56,6 @@ export class VendorService {
   }
 
   confirmOrder(params:HttpParams){
-    return this.http.put(`${this.URL}${apiEndpoints.vendor.getQuestion}`, '', {params:params})
+    return this.http.put(`${this.URL}${apiEndpoints.vendor.confirmPendingOrders}`, '', {params:params})
   }
 }

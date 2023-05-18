@@ -1,5 +1,5 @@
-<app-breadcrumb [title]="'Product Page'" [user]="'vendor'" [items]="['E - Commerce']" [active_item]="'Product Page'"></app-breadcrumb>
-<div *ngIf="product !== undefined" class="container-fluid">
+<app-breadcrumb [title]="'Order'" [user]="'vendor'" [items]="['Orders']" [active_item]="'Order'"></app-breadcrumb>
+<div *ngIf="order !== undefined" class="container-fluid">
     <div class="row product-page-main p-0">
         <div class="col-xl-5 col-md-6 box-col-6 xl-50">
             <div class="card">
@@ -79,29 +79,54 @@
                 <div class="card-body">
                     <!-- side-bar colleps block stat-->
                     <div class="collection-filter-block">
-                        <h4 class="mb-4">Change Quantity </h4>
+                        <h3 class="mb-4">Order Details</h3>
                         <ul class="pro-services">
                             <li>
-                                <div class="media"><i data-feather="box"></i>
+                                <div class="media">
                                     <div class="media-body">
-                                        <h5>Current Quantity is <span class="text-primary h3">{{product.quantity}}</span></h5>
+                                        <h5>Product Name :  <span class="text-muted h4">{{order.productName}}</span></h5>
                                     </div>
                                 </div>
                             </li>
-                            <form class="border-up pt-4" id="updateQuanitity" [formGroup]="updateQuanitity" (ngSubmit)="onSubmit()">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="Raymond">Add more Quantity</label>
-                                            <input class="form-control" formControlName="quantity" min="1" id="Raymond" type="number">
-                                        </div>
+                            <li>
+                                <div class="media">
+                                    <div class="media-body">
+                                        <h5>Product Price :  <span class="text-muted h4">${{order.price}}</span></h5>
                                     </div>
                                 </div>
-                            </form>
+                            </li>
+                            <li>
+                                <div class="media">
+                                    <div class="media-body">
+                                        <h5>Product Quantity :  <span class="text-muted h4">{{order.quantity}}</span></h5>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="media">
+                                    <div class="media-body">
+                                        <h5>Product Total Price :  <span class="text-muted h4">${{order.price * order.quantity}}</span></h5>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="media">
+                                    <div class="media-body">
+                                        <h5>Product Date :  <span class="text-muted h4">{{order.date | date}}</span></h5>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="media">
+                                    <div class="media-body">
+                                        <h5>Product Status :  <span class="h3" [ngClass]="{'text-danger': order.status === 'Canceled', 'text-success': order.status === 'Confirmed', 'text-warning': order.status === 'Pending'}">{{order.status}}</span></h5>
+                                    </div>
+                                </div>
+                            </li>
                         </ul>
-                        <div class="pro-group pb-0">
+                        <div *ngIf="order.status === 'Pending'" class="pro-group pb-0 mt-3">
                             <div class="pro-shop">
-                                <button class="btn btn-primary m-r-10" form="updateQuanitity" type="submit"><i class="fa fa-shopping-basket me-2"></i>Add Quantity</button>
+                                <button class="btn btn-primary m-r-10" (click)="confirmOrder()" type="button"><i class="fa fa-shopping-basket me-2"></i>Confirm Order</button>
                             </div>
                         </div>
                     </div>
