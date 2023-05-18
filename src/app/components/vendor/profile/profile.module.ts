@@ -18,6 +18,7 @@ import {FriendsComponent} from "./profile/left-content/friends/friends.component
 import {LatestPhotosComponent} from "./profile/left-content/latest-photos/latest-photos.component";
 import {DoubleComponent} from "./profile/right-content/double/double.component";
 import {SinglePostComponent} from "./profile/right-content/single-post/single-post.component";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -42,6 +43,8 @@ import {SinglePostComponent} from "./profile/right-content/single-post/single-po
     ProfileRoutingModule,
     SharedModule,
     NgbModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class ProfileModule { }
