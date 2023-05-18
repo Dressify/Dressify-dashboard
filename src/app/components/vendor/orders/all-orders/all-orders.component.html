@@ -31,7 +31,7 @@
                                     <td class="sorting_1">{{order.quantity}}</td>
                                     <td class="sorting_1">${{order.price}}</td>
                                     <td class="sorting_1">${{order.price * order.quantity}}</td>
-                                    <td class="sorting_1 text-" [ngClass]="{'text-danger': order.status === 'Canceled', 'text-success': order.status === 'Confirmed', 'text-warning': order.status === 'Pending'}">{{order.status}}</td>
+                                    <td class="sorting_1 text-" [ngClass]="{'text-danger': order.status === 'Cancelled', 'text-success': order.status === 'Confirmed', 'text-warning': order.status === 'Pending'}">{{order.status}}</td>
                                     <td class="sorting_1">
                                         <button class="btn btn-primary btn-xs" type="button" data-original-title="btn btn-danger btn-xs" [routerLink]="['/vendor/orders/order', order.orderId, order.product.productId]" title="">Edit</button>
                                     </td>
