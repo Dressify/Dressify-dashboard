@@ -7,7 +7,6 @@ export interface Product {
     quantity: number;
     sale: number;
     purchases: number;
-    rentable: boolean;
     color: string;
     category: Category;
     subCategory: SubCategory

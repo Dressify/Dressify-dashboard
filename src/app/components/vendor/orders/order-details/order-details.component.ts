@@ -52,10 +52,13 @@ export class OrderDetailsComponent implements OnInit {
   }
 
   getOrder(){
-    const id = this.route.snapshot.paramMap.get('id');
-    if(id){
+    const orderId = this.route.snapshot.paramMap.get('orderId');
+    const productId = this.route.snapshot.paramMap.get('productId');
+    if(orderId && productId){
       const params = new HttpParams()
-          .set('orderId', id)
+          .set('orderId', orderId)
+          .set('productId', productId)
+
       this.vendor.getOrderDetails(params).subscribe(data =>{
         this.order = data
         this.product = data.product

@@ -14,7 +14,7 @@ const routes: Routes = [
     component: PendingOrdersComponent
   },
   {
-    path: 'order/:id',
+    path: 'order/:orderId/:productId',
     component: OrderDetailsComponent
   }
 ];

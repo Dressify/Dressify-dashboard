@@ -25,15 +25,15 @@
                                 <tbody *ngIf="orders !== undefined">
 
                                 <tr class="odd" *ngFor="let order of orders">
-                                    <td class="sorting_1"><a [routerLink]="['/vendor/orders/order', order.orderId]"><img src="{{order.product.productImages.length > 0 ? order.product.productImages[0].imageUrl : ''}}" alt="{{order.productName}}"></a></td>
-                                    <td class="sorting_1"><a [routerLink]="['/vendor/orders/order', order.orderId]">
+                                    <td class="sorting_1"><a [routerLink]="['/vendor/orders/order', order.orderId, order.product.productId]"><img src="{{order.product.productImages.length > 0 ? order.product.productImages[0].imageUrl : ''}}" alt="{{order.productName}}"></a></td>
+                                    <td class="sorting_1"><a [routerLink]="['/vendor/orders/order', order.orderId, order.product.productId]">
                                         <h6>{{order.productName}}</h6></a></td>
                                     <td class="sorting_1">{{order.quantity}}</td>
                                     <td class="sorting_1">${{order.price}}</td>
                                     <td class="sorting_1">${{order.price * order.quantity}}</td>
                                     <td class="sorting_1 text-" [ngClass]="{'text-danger': order.status === 'Canceled', 'text-success': order.status === 'Confirmed', 'text-warning': order.status === 'Pending'}">{{order.status}}</td>
                                     <td class="sorting_1">
-                                        <button class="btn btn-primary btn-xs" type="button" data-original-title="btn btn-danger btn-xs" [routerLink]="['/vendor/orders/order', order.orderId]" title="">Edit</button>
+                                        <button class="btn btn-primary btn-xs" type="button" data-original-title="btn btn-danger btn-xs" [routerLink]="['/vendor/orders/order', order.orderId, order.product.productId]" title="">Edit</button>
                                     </td>
                                 </tr>
 
