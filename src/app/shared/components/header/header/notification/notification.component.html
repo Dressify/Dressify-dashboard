@@ -6,53 +6,22 @@
          <path d="M14.306 20.5122C13.0117 21.9579 10.9927 21.9751 9.68604 20.5122" stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
        </g>
      </g>
-   </svg><span class="badge rounded-pill badge-warning">4 </span>
+   </svg><span class="badge rounded-pill badge-warning">{{total}} </span>
  </div>
  <div class="onhover-show-div notification-dropdown">
    <div class="dropdown-title">
      <h3>Notification</h3><a class="f-right" href="e-commerce/cart"> <i data-feather="bell">                           </i></a>
    </div>
-   <ul class="custom-scrollbar">
-     <li>
+   <ul *ngIf="orders !== undefined" class="custom-scrollbar">
+     <li *ngFor="let order of orders.slice(0,5)" >
        <div class="media">
-         <div class="notification-img bg-light-primary"><img src="assets/images/avtar/man.png" alt=""></div>
-         <div class="media-body">
-           <h5> <a class="f-14 m-0" href="users/users-profile">Allie Grater</a></h5>
-           <p>Do you want to go see movie?</p><span>10:20</span>
+         <img width="36" height="36" class="img-fluid rounded-1" [src]="order.product.productImages[0].imageUrl" [alt]="order.productName">
+         <div class="media-body ms-3">
+           <h5> <a class="f-14 m-0" href="users/users-profile">{{order.productName}}</a></h5>
+           <p>{{order.product.description | truncate: 20}} </p><span>{{order.date | date}}</span>
          </div>
-         <div class="notification-right"><a href="javascript:void(0)"><i data-feather="x"></i></a></div>
        </div>
      </li>
-     <li> 
-       <div class="media">
-         <div class="notification-img bg-light-secondary"><img src="assets/images/avtar/teacher.png" alt=""></div>
-         <div class="media-body">
-           <h5> <a class="f-14 m-0" href="users/users-profile">Olive Yew</a></h5>
-           <p>Thank you for rating us</p><span>09:20</span>
-         </div>
-         <div class="notification-right"><a href="javascript:void(0)"><i data-feather="x"></i></a></div>
-       </div>
-     </li>
-     <li>
-       <div class="media">
-         <div class="notification-img bg-light-info"><img src="assets/images/avtar/teenager.png" alt=""></div>
-         <div class="media-body">
-           <h5> <a class="f-14 m-0" href="users/users-profile">Peg Legge</a></h5>
-           <p>What's the project report update?</p><span>07:20</span>
-         </div>
-         <div class="notification-right"><a href="javascript:void(0)"><i data-feather="x"></i></a></div>
-       </div>
-     </li>
-     <li>
-       <div class="media">
-         <div class="notification-img bg-light-success"><img src="assets/images/avtar/chinese.png" alt=""></div>
-         <div class="media-body">
-           <h5> <a class="f-14 m-0" href="users/users-profile">Teri Dactyl</a></h5>
-           <p>Do you want to go see movie?.</p><span>05:20</span>
-         </div>
-         <div class="notification-right"><a href="javascript:void(0)"><i data-feather="x"></i></a></div>
-       </div>
-     </li>
-     <li class="p-0"><a class="btn btn-primary" href="javascript:void(0)">Check all</a></li>
+     <li class="p-0"><a class="btn btn-primary">View all</a></li>
    </ul>
  </div>

@@ -25,6 +25,8 @@ import { AngularSvgIconModule } from "angular-svg-icon";
 import { DecimalPipe } from "@angular/common";
 import { SearchComponent } from "./components/header/header/search/search.component";
 import { SearchCustomizeComponent } from "./components/header/header/search-customize/search-customize.component";
+import {AppModule} from "../app.module";
+import {TruncatePipe} from "./pipe/truncate.pipe";
 
 @NgModule({
   declarations: [
@@ -45,9 +47,10 @@ import { SearchCustomizeComponent } from "./components/header/header/search-cust
     FullComponent,
     SearchComponent,
     SearchCustomizeComponent,
+    TruncatePipe
   ],
-  imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule, NgbModule, AngularSvgIconModule.forRoot()],
+    imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule, NgbModule, AngularSvgIconModule.forRoot()],
   providers: [NavService, DecimalPipe],
-  exports: [RouterModule, BreadcrumbComponent, TapToTopComponent, FeatherIconComponent, ContentComponent, LoaderComponent, NgbModule, AngularSvgIconModule],
+  exports: [RouterModule, BreadcrumbComponent, TapToTopComponent, FeatherIconComponent, ContentComponent, LoaderComponent, NgbModule, AngularSvgIconModule, TruncatePipe],
 })
 export class SharedModule {}
