@@ -7,6 +7,7 @@ export const apiEndpoints = {
     unSuspendedProduct: (id: string) => `Admins/UnSuspendedProduct/${id}`,
     suspendVendor: 'Admins/SuspendVendor',
     unSuspendedVendor: (id: string) => `Admins/UnSuspendedVendor/${id}`,
+    ViewAdminProfile: 'Admins/ViewAdminProfile'
   },
   auth: {
     customerRegister: 'Auth/CustRegister',
@@ -66,7 +67,9 @@ export const apiEndpoints = {
     getSuspendedVendor: 'Vendors/GetSuspendedVendor',
     getPendingOrders: 'Vendors/GetPendingOrders',
     confirmPendingOrders: (orderId: string, productId: string) => `Vendors/ConfirmtPendingOrders/${orderId}/${productId}`,
-    viewOwnProducts: 'Vendors/ViewOwnProducts'
+    viewOwnProducts: 'Vendors/ViewOwnProducts',
+    viewVendorProfile:'Vendors/ViewVendorProfile',
+    editVendorProfile: 'Vendors/EditVendorProfile'
   },
   wishesLists: {
     getCustomerWishList: 'WishesLists/GetCustomerWishList'

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Vendor } from 'src/app/shared/interface/user/user';
+import { VendorService } from 'src/app/shared/services/vendor/vendor.service';
 
 @Component({
   selector: 'app-profile',
@@ -7,9 +9,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
   public isProfile = false;
-  constructor() { }
+  vendorProfile:Vendor;
+  constructor(private vendor:VendorService) { 
+    
+  }
 
   ngOnInit(): void {
+    this.vendorProfile = {
+      email : '',
+      userName: '',
+      fName:'',
+      lName:'',
+      address:'',
+      imgUrl:null,
+      nId:'',
+      phoneNumber:'',
+      storeName:''
+    }
+    this.vendor.getVendorProfile().subscribe((data)=>{
+      this.vendorProfile = data;
+      console.log(this.vendorProfile);
+    })
   }
 
 }
