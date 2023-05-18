@@ -70,8 +70,10 @@ export const apiEndpoints = {
     addProduct: 'Vendors/AddProduct',
     updateQuantity: 'Vendors/AddQuantity',
     getSuspendedVendor: 'Vendors/GetSuspendedVendor',
+    getOrders: 'Vendors/GetOrders',
     getPendingOrders: 'Vendors/GetPendingOrders',
-    confirmPendingOrders: (orderId: string, productId: string) => `Vendors/ConfirmtPendingOrders/${orderId}/${productId}`,
+    getOrderDetails: 'Vendors/GetOrderById',
+    confirmPendingOrders: `Vendors/ConfirmtPendingOrders`,
     viewOwnProducts: 'Vendors/ViewOwnProducts'
   },
   wishesLists: {

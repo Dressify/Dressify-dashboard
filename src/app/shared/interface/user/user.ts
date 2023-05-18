@@ -30,3 +30,23 @@ export interface AllQuestions{
     count: number,
     questions: Question[]
 }
+
+export interface Order{
+    orderId: number,
+    quantity: number,
+    price: number,
+    status: string,
+    productName: string,
+    date: string,
+    product: Product,
+}
+
+export interface Orders{
+    count: number,
+    orders: Order[]
+}
+
+export interface PendingOrders{
+    count: number,
+    pendingOrders: Order[]
+}
