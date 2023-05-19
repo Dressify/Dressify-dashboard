@@ -16,6 +16,7 @@ export interface Vendor extends User {
 }
 
 export interface Sales extends User {
+    phone:string,
     salesName:string,
     storeName:string,
     nId:string

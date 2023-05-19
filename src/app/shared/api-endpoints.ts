@@ -80,6 +80,7 @@ export const apiEndpoints = {
     editVendorProfile: 'Vendors/EditVendorProfile'
   },
   sales: {
+    viewSalesProfile: 'Sales/ViewSalesProfile',
     getAllQuestions: 'Sales/GetAllQuestions',
     getQuestion: 'Sales/GetQuestionById',
     answerQuestion: 'Sales/AnswerQuestion',

@@ -10,7 +10,8 @@ import {
   PendingOrders,
   PendingSalesOrders,
   Question,
-  QuestionAnswer
+  QuestionAnswer,
+  Sales
 } from "../../interface/user/user";
 
 @Injectable({
@@ -21,7 +22,9 @@ export class SalesService {
   URL:string = apiEndpoints.baseUrl
 
   constructor(private http :HttpClient) { }
-
+  viewSalesProfile():Observable<Sales>{
+    return this.http.get<Sales>(`${apiEndpoints.baseUrl}${apiEndpoints.sales.viewSalesProfile}`);
+  }
   createProduct(productFormData:FormData){
     return this.http.post(`${this.URL}${apiEndpoints.sales.addProduct}`,productFormData)
   }
