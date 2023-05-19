@@ -38,6 +38,9 @@
                   </tr>
                 
                </tbody>
+                 <tbody *ngIf="sales === undefined || sales === null">
+                    <div> No content</div>
+                 </tbody>
              </table>
              <div class="d-flex justify-content-between p-2">
               <select class="form-select" style="width: auto" name="pageSize" [(ngModel)]="paginationState.pageSize" (change)="getSales()">

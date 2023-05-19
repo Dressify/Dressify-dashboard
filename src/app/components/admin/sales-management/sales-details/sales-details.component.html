@@ -26,11 +26,11 @@
                            <label class="form-label">National ID</label>
                            <h5 class="form-control user-info"> {{sales?.nId}} </h5>
                        </div>
-                       <div *ngIf="sales?.fName !== undefined && sales?.fName !== null" class="mb-3">
+                       <div *ngIf="sales?.fName !== undefined && sales?.fName !== null && sales?.fName !== ''" class="mb-3">
                            <label class="form-label">First Name</label>
                            <h5 class="form-control user-info"> {{sales?.fName}} </h5>
                        </div>
-                       <div *ngIf="sales?.lName !== undefined && sales?.lName !== null" class="mb-3">
+                       <div *ngIf="sales?.lName !== undefined && sales?.lName !== null && sales?.lName !== ''" class="mb-3">
                            <label class="form-label">Last Name</label>
                            <h5 class="form-control user-info"> {{sales?.lName}} </h5>
                        </div>

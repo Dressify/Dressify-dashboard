@@ -28,10 +28,6 @@ export class AdminService {
     return this.http.get<Sales>(`${this.URL}${apiEndpoints.admins.getSalesProfile}`, {headers:header})
   }
 
-  modifySalesPhoto(header:HttpHeaders, formData:FormData){
-    return this.http.put(`${this.URL}${apiEndpoints.superAdmin.modifyAdminPhoto}`, formData, {headers: header}) // TODO TO BE CHANGED
-  }
-
   editSales(body:any){
     return this.http.put(`${this.URL}${apiEndpoints.admins.editSalesProfile}`, body)
   }

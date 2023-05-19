@@ -57,9 +57,12 @@ export class AllSalesComponent implements OnInit{
     console.log(this.paginationState)
 
     this.admin.listSales(params).subscribe(data => {
-      console.log(data)
-      this.sales = data.sales
-      this.total = data.count
+      if(data){
+        this.sales = data.sales
+        this.total = data.count
+      }else{
+        this.sales.pop()
+      }
     }, error => {
       console.log(error)
     })
