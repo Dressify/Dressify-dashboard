@@ -7,15 +7,18 @@ interface User {
     email: string,
     userName: string,
     imgUrl: string | null,
+    profilePic: string | null
     phoneNumber: string
 }
 
 export interface Vendor extends User {
+    vendorId:string,
     nId:string,
     storeName:string
 }
 
 export interface Sales extends User {
+    salesId:string,
     phone:string,
     salesName:string,
     storeName:string,

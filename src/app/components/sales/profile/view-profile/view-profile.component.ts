@@ -10,20 +10,7 @@ import { SalesService } from 'src/app/shared/services/sales/sales.service';
 export class ViewProfileComponent implements OnInit{
   salesProfile:Sales;
   constructor(private sales:SalesService){
-    this.salesProfile ={
-      address:'',
-      fName:'',
-      lName:'',
-      email:'',
-      imgUrl:'',
-      phone:'',
-      nId:'',
-      phoneNumber:'',
-      salesName:'',
-      storeName:'',
-      userName:''
 
-    }
   }
   ngOnInit(): void {
     this.sales.viewSalesProfile().subscribe((data)=>{
