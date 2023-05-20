@@ -1,4 +1,4 @@
-<app-breadcrumb [title]="'All Sales'" [user]="'admin'" [items]="['Sales Management']" [active_item]="'All Sales'"></app-breadcrumb>
+<app-breadcrumb [title]="'All Vendor'" [user]="'admin'" [items]="['Vendor Management']" [active_item]="'All Vendor'"></app-breadcrumb>
 <div class="container-fluid list-products">
    <div class="row">
      <!-- Individual column searching (text inputs) Starts-->
@@ -13,34 +13,36 @@
               <div class="mb-3 row">
                <label for="table-complete-search" class="col-xs-3 col-sm-auto col-form-label">Search:</label>
                <div class="col-sm-4 col-sm-auto">
-                 <input id="table-complete-search" type="text" class="form-control" placeholder="Search by UserName or First/Last Name" name="searchTerm" [(ngModel)]="paginationState.searchTerm" (change)="getSales()">
+                 <input id="table-complete-search" type="text" class="form-control" placeholder="Search by UserName or First/Last Name" name="searchTerm" [(ngModel)]="paginationState.searchTerm" (change)="getVendors()">
                </div>
              </div>
              <table class="display dataTables_wrapper no-footer table" id="basic-1">
                <thead>
                  <tr>
-                    <th class="sorting_asc" scope="col" >Image</th>
+                   <th class="sorting_asc" scope="col" >Image</th>
                    <th class="sorting_asc" scope="col" >Name</th>
                    <th class="sorting_asc" scope="col" >Email</th>
+                   <th class="sorting_asc" scope="col" >Store Name</th>
                    <th class="sorting_asc" scope="col" >Action</th>
                  </tr>
                </thead>
-               <tbody *ngIf="sales !== undefined">
+               <tbody *ngIf="vendors !== undefined">
                 
-                  <tr class="odd" *ngFor="let sale of sales">
-                    <td class="sorting_1"><a [routerLink]="['/admin/sales-management/sales', sale.salesId]"><img src="{{sale.profilePic}}" alt="{{sale.salesName}}"></a></td>
-                    <td class="sorting_1"><a [routerLink]="['/admin/sales-management/sales', sale.salesId]">
-                        <h6>{{sale.salesName}}</h6></a></td>
-                    <td class="sorting_1">{{sale.email}}</td>
+                  <tr class="odd" *ngFor="let vendor of vendors">
+                    <td class="sorting_1"><a [routerLink]="['/admin/sales-management/sales', vendor.vendorId]"><img src="{{vendor.profilePic}}" alt="{{vendor.userName}}"></a></td>
+                    <td class="sorting_1"><a [routerLink]="['/admin/sales-management/sales', vendor.vendorId]">
+                        <h6>{{vendor.userName}}</h6></a></td>
+                      <td class="sorting_1">{{vendor.email}}</td>
+                      <td class="sorting_1">{{vendor.storeName}}</td>
                     <td class="sorting_1">
-                      <button class="btn btn-primary btn-xs" type="button" data-original-title="btn btn-danger btn-xs" [routerLink]="['/admin/sales-management/sales', sale.salesId]" title="">Edit</button>
+                      <button class="btn btn-primary btn-xs" type="button" data-original-title="btn btn-danger btn-xs" [routerLink]="['/admin/sales-management/sales', vendor.vendorId]" title="">Edit</button>
                     </td>
                   </tr>
                 
                </tbody>
              </table>
              <div class="d-flex justify-content-between p-2">
-              <select class="form-select" style="width: auto" name="pageSize" [(ngModel)]="paginationState.pageSize" (change)="getSales()">
+              <select class="form-select" style="width: auto" name="pageSize" [(ngModel)]="paginationState.pageSize" (change)="getVendors()">
                 <option [ngValue]="5">5 items per page</option>
                 <option [ngValue]="10">10 items per page</option>
                 <option [ngValue]="25">25 items per page</option>

@@ -1,6 +1,6 @@
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {admin, AllSales} from '../../interface/admin/admin';
+import {admin, AllSales, AllVendors} from '../../interface/admin/admin';
 import { apiEndpoints } from '../../api-endpoints';
 import { Observable } from 'rxjs';
 import {getAdmins} from "../../interface/SuperAdmin/super-admin";
@@ -30,5 +30,9 @@ export class AdminService {
 
   editSales(body:any){
     return this.http.put(`${this.URL}${apiEndpoints.admins.editSalesProfile}`, body)
+  }
+
+  listVendors(params:HttpParams): Observable<AllVendors> {
+    return this.http.get<AllVendors>(`${this.URL}${apiEndpoints.admins.getAllVendors}`, {params})
   }
 }
