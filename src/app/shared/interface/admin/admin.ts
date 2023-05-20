@@ -1,4 +1,5 @@
 import {Sales, Vendor} from "../user/user";
+import {Product} from "../product/product";
 
 export interface admin {
     adminId: string;
@@ -15,4 +16,29 @@ export interface AllSales {
 export interface AllVendors {
     count: number,
     vendors: Vendor[]
+}
+
+interface Customer {
+    id: string,
+    userName: string,
+    email: string,
+}
+
+export interface Report {
+    reportId: number,
+    productId: number,
+    product: Product,
+    customerId: string
+    customer : Customer,
+    vendorId: string,
+    vendor: Vendor,
+    description: string,
+    date: string,
+    reportStatus: boolean,
+    action: string|null
+}
+
+export interface AllReports {
+    count: number,
+    productReports: Report[]
 }
