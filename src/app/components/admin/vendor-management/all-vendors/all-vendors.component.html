@@ -29,13 +29,13 @@
                <tbody *ngIf="vendors !== undefined">
                 
                   <tr class="odd" *ngFor="let vendor of vendors">
-                    <td class="sorting_1"><a [routerLink]="['/admin/sales-management/sales', vendor.vendorId]"><img src="{{vendor.profilePic}}" alt="{{vendor.userName}}"></a></td>
-                    <td class="sorting_1"><a [routerLink]="['/admin/sales-management/sales', vendor.vendorId]">
-                        <h6>{{vendor.userName}}</h6></a></td>
+                    <td class="sorting_1"><a [routerLink]="['/admin/sales-management/sales', vendor.salesId]"><img src="{{vendor.profilePic || 'https://s3.amazonaws.com/37assets/svn/765-default-avatar.png'}}" alt="{{vendor.userName}}"></a></td>
+                    <td class="sorting_1"><a [routerLink]="['/admin/sales-management/sales', vendor.salesId]">
+                        <h6>{{vendor.salesName}}</h6></a></td>
                       <td class="sorting_1">{{vendor.email}}</td>
                       <td class="sorting_1">{{vendor.storeName}}</td>
                     <td class="sorting_1">
-                      <button class="btn btn-primary btn-xs" type="button" data-original-title="btn btn-danger btn-xs" [routerLink]="['/admin/sales-management/sales', vendor.vendorId]" title="">Edit</button>
+                      <button class="btn btn-primary btn-xs" type="button" data-original-title="btn btn-danger btn-xs" [routerLink]="['/admin/sales-management/sales', vendor.salesId]" title="">Edit</button>
                     </td>
                   </tr>
                 

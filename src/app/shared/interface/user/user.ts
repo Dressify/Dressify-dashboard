@@ -13,8 +13,10 @@ interface User {
 
 export interface Vendor extends User {
     vendorId:string,
+    salesId:string,
     nId:string,
-    storeName:string
+    storeName:string,
+    salesName:string
 }
 
 export interface Sales extends User {
