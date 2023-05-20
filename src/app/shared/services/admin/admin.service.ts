@@ -1,6 +1,6 @@
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {admin, AllReports, AllSales, AllVendors, Report} from '../../interface/admin/admin';
+import {admin, AllProducts, AllReports, AllSales, AllVendors, Report} from '../../interface/admin/admin';
 import { apiEndpoints } from '../../api-endpoints';
 import { Observable } from 'rxjs';
 import {getAdmins} from "../../interface/SuperAdmin/super-admin";
@@ -46,6 +46,26 @@ export class AdminService {
 
   getReportDetails(header: HttpHeaders): Observable<Report>{
     return this.http.get<Report>(`${this.URL}${apiEndpoints.productsReports.getReportById}`, {headers:header})
+  }
+
+  getAllProducts(params:HttpParams): Observable<AllProducts>{
+    return this.http.get<AllProducts>(`${this.URL}${apiEndpoints.products.getProductsPage}`, {params})
+  }
+
+  suspendProduct(body:any){
+    return this.http.put(`${this.URL}${apiEndpoints.admins.suspendProduct}`, body)
+  }
+
+  unsuspendProduct(params:HttpParams){
+    return this.http.put(`${this.URL}${apiEndpoints.admins.unSuspendedProduct}`, {params})
+  }
+
+  suspendVendor(body:any){
+    return this.http.put(`${this.URL}${apiEndpoints.admins.suspendVendor}`, body)
+  }
+
+  unsuspendVendor(params:HttpParams){
+    return this.http.put(`${this.URL}${apiEndpoints.admins.unSuspendedVendor}`, {params})
   }
 
 }

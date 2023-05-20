@@ -18,6 +18,16 @@ export interface AllVendors {
     vendors: Vendor[]
 }
 
+export interface ProductsWithAvgRates{
+    avgRate: number,
+    product: Product
+}
+
+export interface AllProducts{
+    count: number,
+    productsWithAvgRates: ProductsWithAvgRates[]
+}
+
 interface Customer {
     id: string,
     userName: string,

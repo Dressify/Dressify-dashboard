@@ -11,7 +11,9 @@ export interface Product {
     category: Category;
     subCategory: SubCategory
     type: Gender
-    productImages: Image[]
+    productImages: Image[],
+    isSuspended: boolean,
+    suspendedUntil: string
 }
 
 export interface ProductDetails {

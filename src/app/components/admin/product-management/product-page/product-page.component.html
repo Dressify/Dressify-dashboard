@@ -1,0 +1,157 @@
+<app-breadcrumb [title]="'Product Page'" [user]="'vendor'" [items]="['E - Commerce']" [active_item]="'Product Page'"></app-breadcrumb>
+<div *ngIf="product !== undefined" class="container-fluid">
+    <div class="row product-page-main p-0">
+        <div class="col-xl-5 col-md-6 box-col-6 xl-50">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <owl-carousel-o [options]="owlcarousel2ptions">
+                            <ng-template carouselSlide class="item" *ngFor="let img of product.productImages">
+                                <img [src]="[img.imageUrl]" [alt]="product.productName" />
+                            </ng-template>
+                        </owl-carousel-o>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-5 box-col-12 proorder-xl-3 xl-100">
+            <div class="card">
+                <div class="card-body">
+                    <div class="pro-group pt-0 border-0">
+                        <div class="product-page-details mt-0">
+                            <h3>{{product.productName}}</h3>
+                            <div class="pro-review">
+                                <div class="d-flex">
+                                    <ngb-rating [rate]="rating"></ngb-rating>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-price">${{product.price * ((100 - product.sale)/100) | number: '1.2-2'}}
+                            <del>${{product.price}}</del>
+                        </div>
+                    </div>
+                    <div class="pro-group">
+                        <p>{{product.description}}</p>
+                    </div>
+                    <div class="pro-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <table>
+                                    <tbody>
+                                    <tr>
+                                        <td> <b>Availability : </b></td>
+                                        <td *ngIf="product.quantity > 5" class="txt-success"> In stock</td>
+                                        <td *ngIf="product.quantity <= 5 && product.quantity !== 0" class="text-warning"> Low in stock</td>
+                                        <td *ngIf="product.quantity === 0" class="text-danger"> Out of stock</td>
+                                    </tr>
+                                    <tr>
+                                        <td> <b>Category :</b></td>
+                                        <td>{{product.category}}</td>
+                                    </tr>
+                                    <tr *ngIf="!product.color">
+                                        <td> <b>Color :</b></td>
+                                        <td>{{product.color}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-6">
+                                <table>
+                                    <tbody>
+                                    <tr>
+                                        <td> <b>Gender :</b></td>
+                                        <td>{{product.type}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td> <b>Number of purchases :</b></td>
+                                        <td>{{product.purchases}}</td>
+                                    </tr>
+                                    <tr *ngIf="!product.subCategory">
+                                        <td> <b>SubCategory :</b></td>
+                                        <td>{{product.subCategory}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-2 col-md-6 box-col-6 xl-50 proorder-lg-1">
+            <div class="card">
+                <div class="card-body">
+                    <!-- side-bar colleps block stat-->
+                    <div class="collection-filter-block">
+                        <h4 class="mb-4">Product Status</h4>
+                        <ul class="pro-services">
+                            <li>
+                                <div class="media"><i data-feather="info"></i>
+                                    <div class="media-body">
+                                        <h5>Status : <span [ngClass]="product.isSuspended? 'text-danger' : 'text-success'" class="h4">{{product.isSuspended? 'Suspended' : 'Not Suspended'}}</span></h5>
+                                    </div>
+                                </div>
+                            </li>
+                            <li *ngIf="product.isSuspended">
+                                <div class="media"><i data-feather="activity"></i>
+                                    <div class="media-body">
+                                        <h5>Product is suspended until : <span class="text-danger h4">{{product.suspendedUntil | date}}</span></h5>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="collection-filter-block border-up pt-4 mt-4">
+                        <h4 class="">Change Product status</h4>
+                        <ul class="pro-services">
+                            <form *ngIf="!product.isSuspended" class="pt-4" id="updateQuanitity" [formGroup]="suspendProduct">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="mb-3">
+                                            <div class="row">
+                                                <label class="col-sm-3 col-form-label ps-2" for="Raymond">Reason :</label>
+                                                <div class="col-sm-9">
+                                                    <textarea class="form-control" formControlName="reason" rows="3" id="Raymond" placeholder="Type your reason"> </textarea>
+                                                </div>
+                                                <div *ngIf="suspendProduct?.get('reason')?.errors && validate" class="invalid-backEnd">Please Enter the reason.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="mb-3 row g-3">
+                                            <label class="col-sm-3 col-form-label ps-2">Suspended Until :</label>
+                                            <div class="col-xl-5 col-sm-9">
+                                                <div class="digits">
+                                                    <div class="row row-cols-sm-auto">
+                                                        <div class="col-12">
+                                                            <div class="input-group">
+                                                                <input class="form-control" placeholder="yyyy-mm-dd"
+                                                                       name="dp" [(ngModel)]="suspendedUntil" [ngModelOptions]="{standalone: true}" ngbDatepicker #d3="ngbDatepicker"
+                                                                       [placement]="placement" [minDate]="fromDate" [positionTarget]="buttonEl">
+                                                                <button #buttonEl class="btn btn-primary calendar" (click)="d3.toggle()" type="button">
+                                                                    <i data-feather="calendar"></i>
+                                                                </button>
+                                                            </div>
+                                                            <div *ngIf="suspendProduct?.get('suspendedUntil')?.errors && validate" class="invalid-backEnd">Please Enter the suspended date.</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </ul>
+                        <div class="pro-group pb-0">
+                            <div class="pro-shop text-end">
+                                <button class="btn m-r-10" (click)="onSubmit()" [ngClass]="product.isSuspended? 'btn-success' : 'btn-danger'" type="submit">{{product.isSuspended? 'Unsuspend Product' : 'Suspend Product'}}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

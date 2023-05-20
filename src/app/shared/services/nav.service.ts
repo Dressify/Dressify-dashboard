@@ -165,7 +165,7 @@ export class NavService {
       type: "sub",
       active: false,
       children: [
-        { path: "/sample-page/sample-page1", title: "All Accounts", type: "link" }, //TODO change path All Accounts
+        { path: "/admin/product-management/all-products", title: "All Products", type: "link" },
       ],
     },
     { path: "/admin/reports", icon: "faq", title: "Reports", type: "link" },
