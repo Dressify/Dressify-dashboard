@@ -10,13 +10,15 @@ import {CarouselModule} from "ngx-owl-carousel-o";
 import {AllProductsComponent} from "./all-products/all-products.component";
 import {ProductPageComponent} from "./product-page/product-page.component";
 import {AllSuspendedProductsComponent} from "./all-suspended-products/all-suspended-products.component";
+import {ReportedProductsComponent} from "./reported-products/reported-products.component";
 
 
 @NgModule({
   declarations: [
       AllProductsComponent,
       ProductPageComponent,
-      AllSuspendedProductsComponent
+      AllSuspendedProductsComponent,
+      ReportedProductsComponent
   ],
   imports: [
     CommonModule,

@@ -28,6 +28,11 @@ export interface AllProducts{
     productsWithAvgRates: ProductsWithAvgRates[]
 }
 
+export interface AllProductsPunch{
+    count: number,
+    products: Product[]
+}
+
 interface Customer {
     id: string,
     userName: string,

@@ -47,7 +47,7 @@ export const apiEndpoints = {
     editVendorProfile: 'Customers/EditVendorProfile'
   },
   productsActions: {
-    productsActions: `ProductsActions/NeedToPunch`
+    needToPunch: `ProdcutsActions/NeedToPunch`
   },
   products: {
     getProductsPage: 'Products/GetProductsPage',

@@ -6,22 +6,33 @@
          <path d="M14.306 20.5122C13.0117 21.9579 10.9927 21.9751 9.68604 20.5122" stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
        </g>
      </g>
-   </svg><span *ngIf="total !== undefined" class="badge rounded-pill badge-warning">{{total}} </span>
+   </svg><span *ngIf="total !== undefined && total !== 0" class="badge rounded-pill badge-warning">{{total}} </span>
  </div>
  <div class="onhover-show-div notification-dropdown">
    <div class="dropdown-title">
      <h3>Notification</h3><a class="f-right" href="e-commerce/cart"> <i data-feather="bell">                           </i></a>
    </div>
-   <ul *ngIf="orders !== undefined" class="custom-scrollbar">
+   <ul *ngIf="orders !== undefined && orders?.length !== 0" class="custom-scrollbar">
      <li *ngFor="let order of orders.slice(0,5)" >
-       <div class="media">
+       <div [routerLink]="auth.getUserRole() === 'Vendor'? ['vendor/orders/order', order.orderId, order.product.productId] : ['sales/orders/order', order.orderId, order.product.productId]" class="media">
          <img width="36" height="36" class="img-fluid rounded-1" [src]="order.product.productImages[0].imageUrl" [alt]="order.productName">
          <div class="media-body ms-3">
-           <h5> <a class="f-14 m-0" href="users/users-profile">{{order.productName}}</a></h5>
+           <h5> <a class="f-14 m-0" [routerLink]="auth.getUserRole() === 'Vendor'? ['vendor/orders/order-details', order.orderId] : ['sales/orders/order-details', order.orderId]">{{order.productName}}</a></h5>
            <p>{{order.product.description | truncate: 20}} </p><span>{{order.date | date}}</span>
          </div>
        </div>
      </li>
-     <li class="p-0"><a class="btn btn-primary">View all</a></li>
+     <li class="p-0"><a [routerLink]="auth.getUserRole() === 'Vendor'? ['vendor/orders/pending-orders'] : ['sales/orders/pending-orders']" class="btn btn-primary">View all</a></li>
+   </ul>
+   <ul *ngIf="products !== undefined && products.length !== 0" class="custom-scrollbar">
+     <li *ngFor="let product of products.slice(0,5)" >
+       <div [routerLink]="auth.getUserRole() === 'Admin'? ['admin/product-management/product-details', product.productId] : ''" class="media">
+         <img width="36" height="36" class="img-fluid rounded-1" [src]="product.productImages[0].imageUrl" [alt]="product.productName">
+         <div class="media-body ms-3">
+           <h5> <a class="f-14 m-0" href="users/users-profile">{{product.productName}}</a></h5>
+         </div>
+       </div>
+     </li>
+     <li class="p-0"><a [routerLink]="['admin/product-management/reported-products']" class="btn btn-primary">View all</a></li>
    </ul>
  </div>
