@@ -44,8 +44,16 @@ export class AdminService {
     return this.http.get<AllReports>(`${this.URL}${apiEndpoints.productsReports.getUncheckedReports}`, {params})
   }
 
-  getReportDetails(header: HttpHeaders): Observable<Report>{
-    return this.http.get<Report>(`${this.URL}${apiEndpoints.productsReports.getReportById}`, {headers:header})
+  getReportDetails(params: HttpParams): Observable<Report>{
+    return this.http.get<Report>(`${this.URL}${apiEndpoints.productsReports.getReportById}`, {params})
+  }
+
+  checkReport(params:HttpParams){
+    return this.http.put(`${this.URL}${apiEndpoints.admins.checkReport}`, '', {params})
+  }
+
+  actionReport(body:any){
+    return this.http.put(`${this.URL}${apiEndpoints.admins.actionReport}`, body)
   }
 
   getAllProducts(params:HttpParams): Observable<AllProducts>{

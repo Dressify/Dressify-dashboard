@@ -30,14 +30,14 @@
                                 <tbody *ngIf="reports !== undefined">
 
                                 <tr class="odd" *ngFor="let report of reports">
-                                    <td class="sorting_1"><a [routerLink]="['/admin/sales-management/sales', report.vendorId]"><img src="{{report.product.productImages[0].imageUrl}}" alt="{{report.product.productName}}"></a></td>
-                                    <td class="sorting_1"><a [routerLink]="['/admin/sales-management/sales', report.vendorId]">
+                                    <td class="sorting_1"><a [routerLink]="['/admin/reports/report', report.reportId]"><img src="{{report.product.productImages[0].imageUrl}}" alt="{{report.product.productName}}"></a></td>
+                                    <td class="sorting_1"><a [routerLink]="['/admin/reports/report', report.reportId]">
                                         <h6>{{report.product.productName}}</h6></a></td>
-                                    <td class="sorting_1">{{report.vendor?.storeName}}</td>
-                                    <td class="sorting_1">{{report.reportStatus}}</td>
-                                    <td class="sorting_1">{{report?.action}}</td>
+                                    <td class="sorting_1">{{report.vendor.storeName}}</td>
+                                    <td class="sorting_1" [ngClass]="report.reportStatus? 'text-info' : 'text-warning'">{{report.reportStatus? 'Seen' : 'New'}}</td>
+                                    <td class="sorting_1" [ngClass]="{'text-warning': report?.action === null, 'text-info': report.action === 'ignore', 'text-danger' : report?.action === 'suspendProduct' || report.action === 'suspendVendor'}">{{report.action === null? 'Pending' : report?.action}}</td>
                                     <td class="sorting_1">
-                                        <button class="btn btn-primary btn-xs" type="button" data-original-title="btn btn-danger btn-xs" [routerLink]="['/admin/sales-management/sales', report.vendorId]" title="">Edit</button>
+                                        <button class="btn btn-primary btn-xs" type="button" data-original-title="btn btn-danger btn-xs" [routerLink]="['/admin/reports/report', report.reportId]" title="">Edit</button>
                                     </td>
                                 </tr>
 

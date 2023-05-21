@@ -1,0 +1,175 @@
+<app-breadcrumb [title]="'Report Page'" [user]="'admin'" [items]="['Reports']" [active_item]="'Report Page'"></app-breadcrumb>
+<div *ngIf="report !== undefined && product !== undefined && vendor !== undefined" class="container-fluid">
+    <div class="row product-page-main p-0">
+
+        <div class="col-xl-2 col-md-6 box-col-6 xl-50 proorder-lg-1">
+            <div class="card">
+                <div class="card-body">
+                    <!-- side-bar colleps block stat-->
+                    <div class="collection-filter-block">
+                        <h4 class="mb-4">Report Details</h4>
+                        <ul class="pro-services">
+                            <li>
+                                <div class="media"><i data-feather="info"></i>
+                                    <div class="media-body">
+                                        <h5>Product Info: </h5>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="media">
+                                    <div class="media-body">
+                                        <h5>Product Name : <span class="h5"><a [routerLink]="['/admin/product-management/product-details', product.productId]">{{product.productName}}</a></span></h5>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="media">
+                                    <div class="media-body">
+                                        <h5>Product Status : <span [ngClass]="product.isSuspended? 'text-danger' : 'text-success'" class="h5">{{product.isSuspended? 'Suspended' : 'Not Suspended'}}</span></h5>
+                                    </div>
+                                </div>
+                            </li>
+                            <li *ngIf="product.isSuspended">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <h5>Product is suspended until : <span class="text-danger h4">{{product.suspendedUntil | date}}</span></h5>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="border-up pt-4">
+                                <div class="media"><i data-feather="info"></i>
+                                    <div class="media-body">
+                                        <h5>Vendor Info: </h5>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="media">
+                                    <div class="media-body">
+                                        <h5>Store Name : <span class="h5"><a [routerLink]="['/admin/vendor-management/vendor', vendor.vendorId]">{{vendor.storeName}}</a></span></h5>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="media">
+                                    <div class="media-body">
+                                        <h5>Store Status : <span [ngClass]="vendor.isSuspended? 'text-danger' : 'text-success'" class="h5">{{vendor.isSuspended? 'Suspended' : 'Not Suspended'}}</span></h5>
+                                    </div>
+                                </div>
+                            </li>
+                            <li *ngIf="vendor.isSuspended">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <h5>Store is suspended until : <span class="text-danger h4">{{vendor.suspendedUntil | date}}</span></h5>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-2 col-md-6 box-col-6 xl-50 proorder-lg-1">
+            <div class="card">
+                <div class="card-body">
+                    <!-- side-bar colleps block stat-->
+                    <div class="collection-filter-block">
+                        <h4 class="mb-4">Report Info</h4>
+                        <ul class="pro-services">
+                            <li>
+                                <div class="media"><i data-feather="info"></i>
+                                    <div class="media-body">
+                                        <h5>Status : <span [ngClass]="report.reportStatus? 'text-info' : 'text-warning'" class="h5">{{report.reportStatus? 'Seen' : 'New'}}</span></h5>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="media"><i data-feather="info"></i>
+                                    <div class="media-body">
+                                        <h5>Date : <span class="h5">{{report.date | date}}</span></h5>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="media"><i data-feather="info"></i>
+                                    <div class="media-body">
+                                        <h5>Description : <span class="h5 text-muted">{{report.description}}</span></h5>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="media"><i data-feather="info"></i>
+                                    <div class="media-body">
+                                        <h5>Action : <span [ngClass]="{'text-warning': report.action === null, 'text-info': report.action === 'ignore', 'text-danger' : report.action === 'suspendProduct' || report.action === 'suspendVendor'}" class="h4">{{report.action === null? 'Pending' : report.action}}</span></h5>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div *ngIf="report?.action === null" class="collection-filter-block border-up pt-4 mt-4">
+                        <h4 class="">Report Action</h4>
+                        <ul class="pro-services">
+                            <form *ngIf="!product.isSuspended" class="pt-4" id="updateQuanitity" [formGroup]="Actions">
+                                <div class="row select2-drpdwn">
+                                    <div class="col">
+                                        <div class="mb-3">
+                                            <div class="row">
+                                                <label class="col-sm-3 col-form-label ps-2" for="Raymond">Action :</label>
+                                                <div class="col-sm-9">
+                                                    <ng-select [items]="reportActions" formControlName="action" bindLabel="name" bindValue="value" (change)="changeForm()" placeholder="Select Action"></ng-select>                                                </div>
+                                                <div *ngIf="Actions?.get('action')?.errors && validate" class="invalid-backEnd">Please Select the Action for the report.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div *ngIf="Actions.get('action')?.value === 'suspendProduct' || Actions.get('action')?.value === 'suspendVendor'" class="row">
+                                    <div class="col">
+                                        <div class="mb-3">
+                                            <div class="row">
+                                                <label class="col-sm-3 col-form-label ps-2" for="Raymond">Reason :</label>
+                                                <div class="col-sm-9">
+                                                    <textarea class="form-control" formControlName="reason" rows="3" id="Raymond" placeholder="Type your reason"> </textarea>
+                                                </div>
+                                                <div *ngIf="Actions?.get('reason')?.errors && validate" class="invalid-backEnd">Please Enter the reason.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div *ngIf="Actions.get('action')?.value === 'suspendProduct' || Actions.get('action')?.value === 'suspendVendor'" class="row">
+                                    <div class="col">
+                                        <div class="mb-3 row g-3">
+                                            <label class="col-sm-3 col-form-label ps-2">Suspended Until :</label>
+                                            <div class="col-xl-5 col-sm-9">
+                                                <div class="digits">
+                                                    <div class="row row-cols-sm-auto">
+                                                        <div class="col-12">
+                                                            <div class="input-group">
+                                                                <input class="form-control" placeholder="yyyy-mm-dd"
+                                                                       name="dp" [(ngModel)]="suspendedUntil" [ngModelOptions]="{standalone: true}" ngbDatepicker #d3="ngbDatepicker"
+                                                                       [placement]="placement" [minDate]="fromDate" [positionTarget]="buttonEl">
+                                                                <button #buttonEl class="btn btn-primary calendar" (click)="d3.toggle()" type="button">
+                                                                    <i data-feather="calendar"></i>
+                                                                </button>
+                                                            </div>
+                                                            <div *ngIf="Actions?.get('suspendedUntil')?.errors && validate" class="invalid-backEnd">Please Enter the suspended date.</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </ul>
+                        <div class="pro-group pb-0">
+                            <div class="pro-shop text-end">
+                                <button class="btn m-r-10 btn-primary" form="updateQuanitity" (click)="onSubmit()" type="submit">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

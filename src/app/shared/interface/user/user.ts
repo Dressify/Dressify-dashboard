@@ -14,6 +14,8 @@ interface User {
 export interface Vendor extends User {
     vendorId:string,
     salesId:string,
+    isSuspended: boolean,
+    suspendedUntil: string,
     nId:string,
     storeName:string,
     salesName:string
