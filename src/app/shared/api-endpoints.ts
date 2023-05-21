@@ -1,19 +1,20 @@
 export const apiEndpoints = {
-  baseUrl: 'https://localhost:7115/api/',
+  baseUrl: 'https://dressify-back-end.azurewebsites.net/api/',
   admins: {
-    viewAdminProfile: `Admins/ViewAdminProfile`,
+    ViewAdminProfile: 'Admins/ViewAdminProfile',
     createSales: `Admins/CreateSales`,
     getAllSales: `Admins/GetAllSales`,
     getAllVendors: 'Admins/GetAllVendors',
     getSalesProfile: `Admins/GetSalesProfile`,
+    getVendorProfile: `Admins/GetVendorProfile`,
     editSalesProfile: `Admins/EditSalesProfile`,
     checkReport: `Admins/CheckReport`,
     actionReport: 'Admins/ActionReport',
     suspendProduct: 'Admins/SuspendProduct',
-    unSuspendedProduct: `Admins/UnSuspendedProduct`,
+    getProductDetails: `Admins/GetProductDetails`,
+    unSuspendedProduct: `Admins/UnSuspenedProduct`,
     suspendVendor: 'Admins/SuspendVendor',
-    unSuspendedVendor: `Admins/UnSuspendedVendor`,
-    ViewAdminProfile: 'Admins/ViewAdminProfile'
+    unSuspendedVendor: `Admins/UnSuspenedVendor`,
   },
   auth: {
     customerRegister: 'Auth/CustRegister',
@@ -46,16 +47,19 @@ export const apiEndpoints = {
     editVendorProfile: 'Customers/EditVendorProfile'
   },
   productsActions: {
-    productsActions: (threshold: string) => `ProductsActions/NeedToPunch/${threshold}`
+    needToPunch: `ProdcutsActions/NeedToPunch`
   },
   products: {
     getProductsPage: 'Products/GetProductsPage',
     getProductDetails: `Products/GetProductDetails`,
+    getProductReviews: 'Products/GetProductReviews',
+    getCategories: `Products/GetCategories`,
     getSuspendedProducts: 'Products/GetSuspendedProducts'
   },
   productsReports: {
     getAllReports: 'ProductsReports/GetAllReports',
-    getUncheckedReports: 'ProductsReports/GetUncheckedReports'
+    getUncheckedReports: 'ProductsReports/GetUncheckedReports',
+    getReportById: 'ProductsReports/GetReportByID'
   },
   superAdmin: {
     createAdmin: 'SuperAdmin/CreateAdmin',
@@ -80,6 +84,7 @@ export const apiEndpoints = {
     editVendorProfile: 'Vendors/EditVendorProfile'
   },
   sales: {
+    viewSalesProfile: 'Sales/ViewSalesProfile',
     getAllQuestions: 'Sales/GetAllQuestions',
     getQuestion: 'Sales/GetQuestionById',
     answerQuestion: 'Sales/AnswerQuestion',

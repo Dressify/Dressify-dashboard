@@ -156,7 +156,7 @@ export class NavService {
       type: "sub",
       active: false,
       children: [
-        { path: "/sample-page/sample-page1", title: "All Accounts", type: "link" }, //TODO change path All Accounts
+        { path: "/admin/vendor-management/all-vendors", title: "All Accounts", type: "link" },
       ],
     },
     {
@@ -165,10 +165,21 @@ export class NavService {
       type: "sub",
       active: false,
       children: [
-        { path: "/sample-page/sample-page1", title: "All Accounts", type: "link" }, //TODO change path All Accounts
+        { path: "/admin/product-management/all-products", title: "All Products", type: "link" },
+        { path: "/admin/product-management/all-suspended-products", title: "All Suspended Products", type: "link" },
+        { path: "/admin/product-management/reported-products", title: "Reported Products", type: "link" },
       ],
     },
-    { path: "/admin/reports", icon: "faq", title: "Reports", type: "link" },
+    {
+      title: "Reports",
+      icon: "faq",
+      type: "sub",
+      active: false,
+      children: [
+        { path: "/admin/reports/all-reports", title: "All Reports", type: "link" },
+        { path: "/admin/reports/all-new-reports", title: "All New Reports", type: "link" },
+      ],
+    },
   ];
 
   SuperAdminMenu: Menu[] = [

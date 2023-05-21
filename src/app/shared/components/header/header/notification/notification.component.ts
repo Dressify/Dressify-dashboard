@@ -4,6 +4,8 @@ import {HttpParams} from "@angular/common/http";
 import {VendorService} from "../../../../services/vendor/vendor.service";
 import {AuthService} from "../../../../services/auth/auth.service";
 import {SalesService} from "../../../../services/sales/sales.service";
+import {Product} from "../../../../interface/product/product";
+import {AdminService} from "../../../../services/admin/admin.service";
 
 @Component({
   selector: 'app-notification',
@@ -12,10 +14,11 @@ import {SalesService} from "../../../../services/sales/sales.service";
 })
 export class NotificationComponent implements OnInit {
 
+  products: Product[]
   orders: Order[]
   total: number
 
-  constructor(private auth: AuthService, private vendor: VendorService, private sales: SalesService) { }
+  constructor(public auth: AuthService, private vendor: VendorService, private sales: SalesService, private admin: AdminService) { }
 
   ngOnInit(): void {
     this.getOrders(this.auth.getUserRole())
@@ -46,6 +49,19 @@ export class NotificationComponent implements OnInit {
       this.sales.getPendingOrders(params).subscribe(data => {
         if(data){
           this.orders = data.pendingSalesOrders
+          // console.log(this.orders[0].product.productImages[0].imageUrl)
+          this.total = data.count
+        }
+      }, error => {
+        console.log(error)
+      })
+      return;
+    }
+
+    if(user === "Admin"){
+      this.admin.productsNeedToPunch(params).subscribe(data => {
+        if(data){
+          this.products = data.products
           // console.log(this.orders[0].product.productImages[0].imageUrl)
           this.total = data.count
         }

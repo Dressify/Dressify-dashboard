@@ -1,72 +1,56 @@
-<app-breadcrumb [title]="'Admin Profile'" [user]="'super-admin'" [items]="['Admin Management']" [active_item]="'Admin'"></app-breadcrumb>
+<app-breadcrumb [title]="'Sales Profile'" [user]="'admin'" [items]="['Sales Management']" [active_item]="'Sales'"></app-breadcrumb>
 <div class="container-fluid">
    <div class="edit-profile">
      <div class="row">
        <div class="col-xl-4">
            <div class="card">
                <div class="card-header pb-0">
-                   <h4 class="card-title mb-0">Admin Details</h4>
+                   <h4 class="card-title mb-0">Sales Details</h4>
                </div>
                <div class="card-body">
                    <form>
                        <div class="row mb-2">
                            <div class="profile-title">
-                               <div class="media"><img class="img-70 rounded-circle" alt="" [src]="admin?.profilePic">
+                               <div class="media"><img class="img-70 rounded-circle" alt="" [src]="sales?.profilePic">
                                    <div class="media-body">
-                                       <h3 class="mb-1 f-20 txt-primary">{{admin?.adminName}}</h3>
+                                       <h3 class="mb-1 f-20 txt-primary">{{sales?.salesName}}</h3>
                                    </div>
                                </div>
                            </div>
                        </div>
                        <div class="mb-3">
                            <label class="form-label">Email-Address</label>
-                           <h5 class="form-control user-info"> {{admin?.email}} </h5>
+                           <h5 class="form-control user-info"> {{sales?.email}} </h5>
                        </div>
-                       <div class="form-footer text-end">
-                           <button class="btn btn-primary btn-block" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalCenter" (click)="changePhotoModal(verticallyContent)">Change Photo</button>
+                       <div class="mb-3">
+                           <label class="form-label">National ID</label>
+                           <h5 class="form-control user-info"> {{sales?.nId}} </h5>
+                       </div>
+                       <div *ngIf="sales?.fName !== undefined && sales?.fName !== null && sales?.fName !== ''" class="mb-3">
+                           <label class="form-label">First Name</label>
+                           <h5 class="form-control user-info"> {{sales?.fName}} </h5>
+                       </div>
+                       <div *ngIf="sales?.lName !== undefined && sales?.lName !== null && sales?.lName !== ''" class="mb-3">
+                           <label class="form-label">Last Name</label>
+                           <h5 class="form-control user-info"> {{sales?.lName}} </h5>
                        </div>
                    </form>
                </div>
            </div>
        </div>
-         <ng-template #verticallyContent let-modal>
-             <div class="modal-header">
-                 <h5 class="modal-title">Modal title</h5>
-                 <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
-             </div>
-             <div class="modal-body">
-                 <ngx-dropzone [accept]="'image/*'" (change)="onSelect2($event)" [disableClick]="files2.length != 0">
-                     <ngx-dropzone-label>
-                         <div>
-                             <div class="dz-message needsclick ">
-                                 <i class="icon-cloud-up"></i>
-                                 <h6>Drop files here or click to upload.</h6><span class="dz-message needsclick">(This is just a demo dropzone. Selected files are <strong>not</strong> actually uploaded.)</span>
-                             </div>
-                         </div>
-                     </ngx-dropzone-label>
-                     <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files2" [file]="f" [removable]="true" (removed)="onRemove2(f)">
-                         <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
-                     </ngx-dropzone-image-preview>
-                 </ngx-dropzone>
-             </div>
-             <div class="modal-footer">
-                 <button class="btn btn-secondary" type="button" data-bs-dismiss="modal" (click)="modal.dismiss('Cross click')">Close</button>
-                 <button class="btn btn-primary" type="button" (click)="changePhoto()">Upload</button>
-             </div>
-         </ng-template>
        <div class="col-xl-8">
            <form class="card" [formGroup]="editProfile" (ngSubmit)="onSubmit()">
                <div class="card-header pb-0">
-                   <h4 class="card-title mb-0">Edit Admin</h4>
+                   <h4 class="card-title mb-0">Edit Sales</h4>
                </div>
                <div class="card-body">
                    <div class="row">
                        <div class="col-sm-6 col-md-6">
                            <div class="mb-3">
                                <label class="form-label">User Name</label>
-                               <input class="form-control" formControlName="adminName" type="text" placeholder="Username">
-                               <div *ngIf="editProfile?.get('adminName')?.errors && validate" class="invalid-backEnd">Please Enter the admin name.</div>
-                               <div *ngIf="errors['AdminName']" class="invalid-backEnd">{{errors['AdminName']}}</div>
+                               <input class="form-control" formControlName="salesName" type="text" placeholder="salesName">
+                               <div *ngIf="editProfile?.get('salesName')?.errors && validate" class="invalid-backEnd">Please Enter the admin name.</div>
+                               <div *ngIf="errors['salesName']" class="invalid-backEnd">{{errors['salesName']}}</div>
                            </div>
                        </div>
                        <div class="col-sm-6 col-md-4">
@@ -74,7 +58,35 @@
                                <label class="form-label">Email address</label>
                                <input class="form-control" formControlName="email" type="email" placeholder="Email" >
                                <div *ngIf="editProfile?.get('email')?.errors && validate" class="invalid-backEnd">Please Enter the email.</div>
-                               <div *ngIf="errors['Email']" class="invalid-backEnd">{{errors['Email']}}</div>
+                               <div *ngIf="errors['email']" class="invalid-backEnd">{{errors['email']}}</div>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="row">
+                       <div class="col-sm-6 col-md-6">
+                           <div class="mb-3">
+                               <label class="form-label">First Name</label>
+                               <input class="form-control" formControlName="fName" type="text" placeholder="first name">
+                               <div *ngIf="editProfile?.get('fName')?.errors && validate" class="invalid-backEnd">Please Enter the admin name.</div>
+                               <div *ngIf="errors['fName']" class="invalid-backEnd">{{errors['fName']}}</div>
+                           </div>
+                       </div>
+                       <div class="col-sm-6 col-md-4">
+                           <div class="mb-3">
+                               <label class="form-label">Last Name</label>
+                               <input class="form-control" formControlName="lName" type="text" placeholder="last name" >
+                               <div *ngIf="editProfile?.get('lName')?.errors && validate" class="invalid-backEnd">Please Enter the email.</div>
+                               <div *ngIf="errors['lName']" class="invalid-backEnd">{{errors['lName']}}</div>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="row">
+                       <div class="col-sm-6 col-md-6">
+                           <div class="mb-3">
+                               <label class="form-label">National ID</label>
+                               <input class="form-control" formControlName="nId" type="text" placeholder="National ID">
+                               <div *ngIf="editProfile?.get('nId')?.errors && validate" class="invalid-backEnd">Please Enter the National ID</div>
+                               <div *ngIf="errors['nId']" class="invalid-backEnd">{{errors['nId']}}</div>
                            </div>
                        </div>
                    </div>

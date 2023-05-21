@@ -1,0 +1,63 @@
+<app-breadcrumb [title]="'All Reports'" [user]="'admin'" [items]="['Reports']" [active_item]="'All Reports'"></app-breadcrumb>
+<div class="container-fluid list-products">
+   <div class="row">
+     <!-- Individual column searching (text inputs) Starts-->
+     <div class="col-sm-12">
+       <div class="card">
+<!--         <div class="card-header pb-0">-->
+<!--           <h5>Individual column searching (text inputs) </h5><span></span>-->
+<!--          </div>-->
+          <div class="card-body">
+            <div class="table-responsive product-table">
+              <form>
+<!--              <div class="mb-3 row">-->
+<!--               <label for="table-complete-search" class="col-xs-3 col-sm-auto col-form-label">Search:</label>-->
+<!--               <div class="col-sm-4 col-sm-auto">-->
+<!--                 <input id="table-complete-search" type="text" class="form-control" placeholder="Search by UserName or First/Last Name" name="searchTerm" [(ngModel)]="paginationState.searchTerm" (change)="getVendors()">-->
+<!--               </div>-->
+<!--             </div>-->
+             <table class="display dataTables_wrapper no-footer table" id="basic-1">
+               <thead>
+                 <tr>
+                   <th class="sorting_asc" scope="col" >Product Image</th>
+                   <th class="sorting_asc" scope="col" >Product Name</th>
+                   <th class="sorting_asc" scope="col" >Store Name</th>
+                   <th class="sorting_asc" scope="col" >Report Status</th>
+                   <th class="sorting_asc" scope="col" >Action</th>
+                   <th class="sorting_asc" scope="col" >View</th>
+                 </tr>
+               </thead>
+               <tbody *ngIf="reports !== undefined">
+                
+                  <tr class="odd" *ngFor="let report of reports">
+                    <td class="sorting_1"><a [routerLink]="['/admin/reports/report', report.reportId]"><img src="{{report.product.productImages[0].imageUrl}}" alt="{{report.product.productName}}"></a></td>
+                    <td class="sorting_1"><a [routerLink]="['/admin/reports/report', report.reportId]">
+                        <h6>{{report.product.productName}}</h6></a></td>
+                      <td class="sorting_1">{{report.vendor.storeName}}</td>
+                      <td class="sorting_1" [ngClass]="report.reportStatus? 'text-info' : 'text-warning'">{{report.reportStatus? 'Seen' : 'New'}}</td>
+                      <td class="sorting_1" [ngClass]="{'text-warning': report?.action === null, 'text-info': report.action === 'ignore', 'text-danger' : report?.action === 'suspendProduct' || report.action === 'suspendVendor'}">{{report.action === null? 'Pending' : report?.action}}</td>
+                    <td class="sorting_1">
+                      <button class="btn btn-primary btn-xs" type="button" data-original-title="btn btn-danger btn-xs" [routerLink]="['/admin/reports/report', report.reportId]" title="">Edit</button>
+                    </td>
+                  </tr>
+                
+               </tbody>
+             </table>
+             <div class="d-flex justify-content-between p-2">
+              <select class="form-select" style="width: auto" name="pageSize" [(ngModel)]="paginationState.pageSize" (change)="getReports()">
+                <option [ngValue]="5">5 items per page</option>
+                <option [ngValue]="10">10 items per page</option>
+                <option [ngValue]="25">25 items per page</option>
+                <option [ngValue]="50">50 items per page</option>
+              </select>
+              <ngb-pagination
+                [collectionSize]="total" [maxSize]="6" [(page)]="paginationState.page" [pageSize]="paginationState.pageSize" (pageChange)="onPageChange($event)" [rotate]="true" [boundaryLinks]="true">
+              </ngb-pagination>
+            </div>
+           </form>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>

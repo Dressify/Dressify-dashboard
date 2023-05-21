@@ -7,15 +7,25 @@ interface User {
     email: string,
     userName: string,
     imgUrl: string | null,
+    profilePic: string | null
     phoneNumber: string
 }
 
 export interface Vendor extends User {
+    id: string,
+    vendorId:string,
+    vendorID:string,
+    salesId:string,
+    isSuspended: boolean,
+    suspendedUntil: string,
     nId:string,
-    storeName:string
+    storeName:string,
+    salesName:string
 }
 
 export interface Sales extends User {
+    salesId:string,
+    phone:string,
     salesName:string,
     storeName:string,
     nId:string

@@ -10,6 +10,9 @@ import {paginationState} from "../../../../shared/interface/pagination";
 import {admin} from "../../../../shared/interface/admin/admin";
 import {HttpParams} from "@angular/common/http";
 import * as events from "events";
+import {Sales} from "../../../../shared/interface/user/user";
+import {SalesService} from "../../../../shared/services/sales/sales.service";
+import {AdminService} from "../../../../shared/services/admin/admin.service";
 @Component({
   selector: 'app-all-admins',
   templateUrl: './all-sales.component.html',
@@ -23,22 +26,22 @@ export class AllSalesComponent implements OnInit{
     searchTerm: ''
   };
 
-  admins: admin[]
+  sales: Sales[]
   total: number
 
-  constructor(private sadmin: SadminService) {
+  constructor(private admin: AdminService) {
   }
 
   ngOnInit(): void {
-    this.getAdmins()
+    this.getSales()
   }
 
   onPageChange(e:number){
     this.paginationState.page = e;
-    this.getAdmins();
+    this.getSales();
   }
 
-  getAdmins(){
+  getSales(){
     let params = new HttpParams()
 
     if (this.paginationState.searchTerm === ''){
@@ -53,10 +56,13 @@ export class AllSalesComponent implements OnInit{
     console.log(params)
     console.log(this.paginationState)
 
-    this.sadmin.listAdmins(params).subscribe(data => {
-      console.log(data)
-      this.admins = data.admins
-      this.total = data.count
+    this.admin.listSales(params).subscribe(data => {
+      if(data){
+        this.sales = data.sales
+        this.total = data.count
+      }else{
+        this.sales = []
+      }
     }, error => {
       console.log(error)
     })

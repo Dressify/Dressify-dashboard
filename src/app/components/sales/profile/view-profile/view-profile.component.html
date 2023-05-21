@@ -1,0 +1,54 @@
+<app-breadcrumb [title]="'My Account'" [user]="'sales'" [items]="['Profile']" [active_item]="'My Account'"></app-breadcrumb>
+<div class="card">
+  <div class="card-header pb-0">
+    <h4 class="card-title mb-0">My Profile</h4>
+  </div>
+  <div class="card-body">
+    <form *ngIf="salesProfile !== undefined">
+      <div class="row mb-5">
+        <div class="profile-title">
+          <div class="media"><img class="img-70 rounded-circle" alt="" src="{{salesProfile.imgUrl || 'https://s3.amazonaws.com/37assets/svn/765-default-avatar.png'}}">
+            <div class="media-body ms-4">
+              <h3 class="mb-1  f-20 txt-primary">{{salesProfile.fName}} {{salesProfile.lName}}</h3>
+              <p class="f-12">VENDOR</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+     <div class="row">
+      <div class="mb-3 col-xl-6">
+        <label class="form-label">Email</label>
+        <input class="form-control" value="{{salesProfile.email}}" placeholder="email..." disabled>
+      </div>
+      <!-- <div class="mb-3 col-xl-6">
+        <label class="form-label">Username</label>
+        <input class="form-control" value="" placeholder="username... " disabled>
+      </div> -->
+      <div class="mb-3 col-xl-6">
+        <label class="form-label">Phone Number</label>
+        <input class="form-control" value="{{salesProfile.phone}}" placeholder="phone number... " disabled>
+      </div>
+      <div class="mb-3 col-xl-6">
+        <label class="form-label">Address</label>
+        <input class="form-control" value="{{salesProfile.address}}" placeholder="address..." disabled>
+      </div>
+      <div class="mb-3 col-xl-6">
+        <label class="form-label">Sales Name</label>
+        <input class="form-control" value="{{salesProfile.salesName}}" placeholder="sales name..." disabled>
+      </div>
+      <div class="mb-3 col-xl-6">
+        <label class="form-label">Store Name</label>
+        <input class="form-control" value="{{salesProfile.storeName}}" placeholder="store name..." disabled>
+      </div>
+     </div>
+      <!-- <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input class="form-control" type="password" value="password">
+      </div> -->
+      <!-- <div class="card-footer text-end">
+        <button class="btn btn-primary" [routerLink]="['edit']">Update Profile</button>
+      </div> -->
+    </form>
+  </div>
+</div>

@@ -15,17 +15,6 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.vendorProfile = {
-      email : '',
-      userName: '',
-      fName:'',
-      lName:'',
-      address:'',
-      imgUrl:null,
-      nId:'',
-      phoneNumber:'',
-      storeName:''
-    }
     this.vendor.getVendorProfile().subscribe((data)=>{
       this.vendorProfile = data;
       console.log(this.vendorProfile);
