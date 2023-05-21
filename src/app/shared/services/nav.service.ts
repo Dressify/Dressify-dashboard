@@ -166,9 +166,9 @@ export class NavService {
       active: false,
       children: [
         { path: "/admin/product-management/all-products", title: "All Products", type: "link" },
+        { path: "/admin/product-management/all-suspended-products", title: "All Suspended Products", type: "link" },
       ],
     },
-    { path: "/admin/reports", icon: "faq", title: "Reports", type: "link" },
     {
       title: "Reports",
       icon: "faq",

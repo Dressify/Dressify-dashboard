@@ -38,6 +38,11 @@ export class ReportDetailsComponent implements OnInit, OnDestroy {
     {value: 'suspendProduct', name: 'Suspend Product'},
     {value: 'suspendVendor', name: 'Suspend Vendor'}
   ];
+
+  reportActionsDressfiy = [
+    {value: 'ignore', name: 'Ignore'},
+    {value: 'suspendProduct', name: 'Suspend Product'}
+  ];
   selectedCity: any;
 
   Actions:FormGroup

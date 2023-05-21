@@ -117,7 +117,7 @@
                                             <div class="row">
                                                 <label class="col-sm-3 col-form-label ps-2" for="Raymond">Action :</label>
                                                 <div class="col-sm-9">
-                                                    <ng-select [items]="reportActions" formControlName="action" bindLabel="name" bindValue="value" (change)="changeForm()" placeholder="Select Action"></ng-select>                                                </div>
+                                                    <ng-select [items]="vendor.storeName === 'Dressify'? reportActionsDressfiy : reportActions" formControlName="action" bindLabel="name" bindValue="value" (change)="changeForm()" placeholder="Select Action"></ng-select>                                                </div>
                                                 <div *ngIf="Actions?.get('action')?.errors && validate" class="invalid-backEnd">Please Select the Action for the report.</div>
                                             </div>
                                         </div>

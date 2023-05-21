@@ -11,6 +11,7 @@ export const apiEndpoints = {
     checkReport: `Admins/CheckReport`,
     actionReport: 'Admins/ActionReport',
     suspendProduct: 'Admins/SuspendProduct',
+    getProductDetails: `Admins/GetProductDetails`,
     unSuspendedProduct: `Admins/UnSuspenedProduct`,
     suspendVendor: 'Admins/SuspendVendor',
     unSuspendedVendor: `Admins/UnSuspenedVendor`,

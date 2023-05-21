@@ -82,7 +82,7 @@ export class ProductPageComponent implements OnInit {
     if(id){
       const params = new HttpParams()
           .set('id', id)
-      this.vendor.getProduct(params).subscribe(data =>{
+      this.admin.getProduct(params).subscribe(data =>{
         this.product = data.product
         console.log(this.product)
         this.suspendProduct.get('productId')?.setValue(data.product.productId)
