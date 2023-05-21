@@ -51,7 +51,7 @@
                                     <option [ngValue]="50">50 items per page</option>
                                 </select>
                                 <ngb-pagination
-                                        [collectionSize]="total" [(page)]="paginationState.page" [pageSize]="paginationState.pageSize" (pageChange)="onPageChange($event)" [rotate]="true" [boundaryLinks]="true">
+                                        [collectionSize]="total" [maxSize]="6" [(page)]="paginationState.page" [pageSize]="paginationState.pageSize" (pageChange)="onPageChange($event)" [rotate]="true" [boundaryLinks]="true">
                                 </ngb-pagination>
                             </div>
                         </form>
