@@ -1,46 +1,130 @@
-<app-breadcrumb [title]="'Users Edit'" [user]="'vendor'" [items]="['Users']" [active_item]="'Users Edit'"></app-breadcrumb>
-<div class="card">
-  <div class="card-header pb-0">
-    <h4 class="card-title mb-0">My Profile</h4>
-  </div>
-  <div class="card-body">
-    <form *ngIf="vendorProfile !== undefined">
-      <div class="row mb-5">
-        <div class="profile-title">
-          <div class="media"><img class="img-70 rounded-circle" alt="" src="{{vendorProfile.imgUrl || 'https://s3.amazonaws.com/37assets/svn/765-default-avatar.png'}}">
-            <div class="media-body ms-4">
-              <h3 class="mb-1  f-20 txt-primary">{{vendorProfile.fName}} {{vendorProfile.lName}}</h3>
-              <p class="f-12">VENDOR</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      
+<app-breadcrumb [title]="'Vendor Details'" [user]="'admin'" [items]="['Vendor Management']" [active_item]="'Vendor Details'"></app-breadcrumb>
+<div class="container-fluid">
+   <div class="edit-profile">
      <div class="row">
-      <div class="mb-3 col-xl-6">
-        <label class="form-label">Email</label>
-        <input class="form-control" value="{{vendorProfile.email}}" placeholder="email..." disabled>
-      </div>
-      <!-- <div class="mb-3 col-xl-6">
-        <label class="form-label">Username</label>
-        <input class="form-control" value="{{vendorProfile.userName}}" placeholder="username... " disabled>
-      </div> -->
-      <div class="mb-3 col-xl-6">
-        <label class="form-label">Phone Number</label>
-        <input class="form-control" value="{{vendorProfile.phoneNumber}}" placeholder="phone number... " disabled>
-      </div>
-      <div class="mb-3 col-xl-6">
-        <label class="form-label">Address</label>
-        <input class="form-control" value="{{vendorProfile.address}}" placeholder="address" disabled>
-      </div>
+       <div class="col-xl-5 col-md-6 box-col-6 xl-50">
+           <div class="card">
+               <div class="card-header pb-0">
+                   <h4 class="card-title mb-0">Vendor Details</h4>
+               </div>
+               <div *ngIf="vendor !== undefined" class="card-body">
+                   <form>
+                       <div class="row mb-2">
+                           <div class="profile-title">
+                               <div class="media"><img class="img-70 rounded-circle" alt="" [src]="vendor.profilePic|| 'https://s3.amazonaws.com/37assets/svn/765-default-avatar.png'">
+                                   <div class="media-body">
+                                       <h3 class="mb-1 f-20 txt-primary">{{vendor.userName}}</h3>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                       <div class="row mb-3">
+                           <div *ngIf="vendor.fName !== undefined && vendor.fName !== null && vendor.fName !== ''" class="col-sm-6">
+                               <label class="form-label">First Name</label>
+                               <h5 class="form-control user-info"> {{vendor.fName}} </h5>
+                           </div>
+                           <div *ngIf="vendor.lName !== undefined && vendor.lName !== null && vendor.lName !== ''"  class="col-sm-6">
+                               <label class="form-label">Last Name</label>
+                               <h5 class="form-control user-info"> {{vendor.lName}} </h5>
+                           </div>
+                       </div>
+                       <div class="mb-3">
+                           <label class="form-label">Store Name</label>
+                           <h5 class="form-control user-info"> {{vendor.storeName}} </h5>
+                       </div>
+                       <div class="row mb-3">
+                           <div class="col-sm-6">
+                               <label class="form-label">Email-Address</label>
+                               <h5 class="form-control user-info"> {{vendor.email}} </h5>
+                           </div>
+                           <div class="col-sm-6">
+                               <label class="form-label">National ID</label>
+                               <h5 class="form-control user-info"> {{vendor.nId}} </h5>
+                           </div>
+                       </div>
+                       <div class="mb-3">
+                           <label class="form-label">Address</label>
+                           <h5 class="form-control user-info"> {{vendor.address}} </h5>
+                       </div>
+                   </form>
+               </div>
+           </div>
+       </div>
+       <div class="col-xl-2 col-md-6 box-col-6 xl-50 proorder-lg-1">
+           <div class="card">
+               <div *ngIf="vendor !== undefined" class="card-body">
+                   <!-- side-bar colleps block stat-->
+                   <div class="collection-filter-block">
+                       <h4 class="mb-4">Vendor Status</h4>
+                       <ul class="pro-services">
+                           <li>
+                               <div class="media"><i data-feather="info"></i>
+                                   <div class="media-body">
+                                       <h5>Status : <span [ngClass]="vendor.isSuspended? 'text-danger' : 'text-success'" class="h4">{{vendor.isSuspended? 'Suspended' : 'Not Suspended'}}</span></h5>
+                                   </div>
+                               </div>
+                           </li>
+                           <li *ngIf="vendor.isSuspended">
+                               <div class="media"><i data-feather="activity"></i>
+                                   <div class="media-body">
+                                       <h5>Vendor is suspended until : <span class="text-danger h4">{{vendor.suspendedUntil | date}}</span></h5>
+                                   </div>
+                               </div>
+                           </li>
+                       </ul>
+                   </div>
+                   <div class="collection-filter-block border-up pt-4 mt-4">
+                       <h4 class="">Change Vendor status</h4>
+                       <ul class="pro-services">
+                           <form *ngIf="!vendor.isSuspended" class="pt-4" id="updateQuanitity" [formGroup]="suspendVendor">
+                               <div class="row">
+                                   <div class="col">
+                                       <div class="mb-3">
+                                           <div class="row">
+                                               <label class="col-sm-3 col-form-label ps-2" for="Raymond">Reason :</label>
+                                               <div class="col-sm-9">
+                                                   <textarea class="form-control" formControlName="reason" rows="3" id="Raymond" placeholder="Type your reason"> </textarea>
+                                               </div>
+                                               <div *ngIf="suspendVendor?.get('reason')?.errors && validate" class="invalid-backEnd">Please Enter the reason.</div>
+                                           </div>
+                                       </div>
+                                   </div>
+                               </div>
+                               <div class="row">
+                                   <div class="col">
+                                       <div class="mb-3 row g-3">
+                                           <label class="col-sm-3 col-form-label ps-2">Suspended Until :</label>
+                                           <div class="col-xl-5 col-sm-9">
+                                               <div class="digits">
+                                                   <div class="row row-cols-sm-auto">
+                                                       <div class="col-12">
+                                                           <div class="input-group">
+                                                               <input class="form-control" placeholder="yyyy-mm-dd"
+                                                                      name="dp" [(ngModel)]="suspendedUntil" [ngModelOptions]="{standalone: true}" ngbDatepicker #d3="ngbDatepicker"
+                                                                      [placement]="placement" [minDate]="fromDate" [positionTarget]="buttonEl">
+                                                               <button #buttonEl class="btn btn-primary calendar" (click)="d3.toggle()" type="button">
+                                                                   <i data-feather="calendar"></i>
+                                                               </button>
+                                                           </div>
+                                                           <div *ngIf="suspendVendor?.get('suspendedUntil')?.errors && validate" class="invalid-backEnd">Please Enter the suspended date.</div>
+                                                       </div>
+                                                   </div>
+                                               </div>
+                                           </div>
+                                       </div>
+                                   </div>
+                               </div>
+                           </form>
+                       </ul>
+                       <div class="pro-group pb-0">
+                           <div class="pro-shop text-end">
+                               <button class="btn m-r-10" (click)="onSubmit()" [ngClass]="vendor.isSuspended? 'btn-success' : 'btn-danger'" type="submit">{{vendor.isSuspended? 'Unsuspend Vendor' : 'Suspend Vendor'}}</button>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
      </div>
-      <!-- <div class="mb-3">
-        <label class="form-label">Password</label>
-        <input class="form-control" type="password" value="password">
-      </div> -->
-      <div class="card-footer text-end">
-        <button class="btn btn-primary" [routerLink]="['edit']">Update Profile</button>
-      </div>
-    </form>
-  </div>
-</div>
+   </div>
+ </div>

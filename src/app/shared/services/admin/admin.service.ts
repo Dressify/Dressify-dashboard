@@ -4,7 +4,7 @@ import {admin, AllProducts, AllReports, AllSales, AllVendors, Report} from '../.
 import { apiEndpoints } from '../../api-endpoints';
 import { Observable } from 'rxjs';
 import {getAdmins} from "../../interface/SuperAdmin/super-admin";
-import {Sales} from "../../interface/user/user";
+import {Sales, Vendor} from "../../interface/user/user";
 @Injectable({
   providedIn: 'root'
 })
@@ -36,6 +36,10 @@ export class AdminService {
     return this.http.get<AllVendors>(`${this.URL}${apiEndpoints.admins.getAllVendors}`, {params})
   }
 
+  getVendorDetails(header: HttpHeaders): Observable<Vendor>{
+    return this.http.get<Vendor>(`${this.URL}${apiEndpoints.admins.getVendorProfile}`, {headers:header})
+  }
+
   listReports(params:HttpParams): Observable<AllReports> {
     return this.http.get<AllReports>(`${this.URL}${apiEndpoints.productsReports.getAllReports}`, {params})
   }
@@ -65,7 +69,7 @@ export class AdminService {
   }
 
   unsuspendProduct(params:HttpParams){
-    return this.http.put(`${this.URL}${apiEndpoints.admins.unSuspendedProduct}`, {params})
+    return this.http.put(`${this.URL}${apiEndpoints.admins.unSuspendedProduct}`, '',{params})
   }
 
   suspendVendor(body:any){
@@ -73,7 +77,7 @@ export class AdminService {
   }
 
   unsuspendVendor(params:HttpParams){
-    return this.http.put(`${this.URL}${apiEndpoints.admins.unSuspendedVendor}`, {params})
+    return this.http.put(`${this.URL}${apiEndpoints.admins.unSuspendedVendor}`, '',{params})
   }
 
 }

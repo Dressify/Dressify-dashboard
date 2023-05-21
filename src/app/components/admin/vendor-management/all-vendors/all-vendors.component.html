@@ -23,19 +23,21 @@
                    <th class="sorting_asc" scope="col" >Name</th>
                    <th class="sorting_asc" scope="col" >Email</th>
                    <th class="sorting_asc" scope="col" >Store Name</th>
+                   <th class="sorting_asc" scope="col" >Status</th>
                    <th class="sorting_asc" scope="col" >Action</th>
                  </tr>
                </thead>
                <tbody *ngIf="vendors !== undefined">
                 
                   <tr class="odd" *ngFor="let vendor of vendors">
-                    <td class="sorting_1"><a [routerLink]="['/admin/sales-management/sales', vendor.salesId]"><img src="{{vendor.profilePic || 'https://s3.amazonaws.com/37assets/svn/765-default-avatar.png'}}" alt="{{vendor.userName}}"></a></td>
-                    <td class="sorting_1"><a [routerLink]="['/admin/sales-management/sales', vendor.salesId]">
+                    <td class="sorting_1"><a [routerLink]="['/admin/vendor-management/vendor-details', vendor.salesId]"><img src="{{vendor.profilePic || 'https://s3.amazonaws.com/37assets/svn/765-default-avatar.png'}}" alt="{{vendor.userName}}"></a></td>
+                    <td class="sorting_1"><a [routerLink]="['/admin/vendor-management/vendor-details', vendor.salesId]">
                         <h6>{{vendor.salesName}}</h6></a></td>
                       <td class="sorting_1">{{vendor.email}}</td>
                       <td class="sorting_1">{{vendor.storeName}}</td>
+                      <td [ngClass]="vendor.isSuspended? 'text-danger' : 'text-success'" class="sorting_1">{{vendor.isSuspended? 'Suspended' : 'Not Suspended'}}</td>
                     <td class="sorting_1">
-                      <button class="btn btn-primary btn-xs" type="button" data-original-title="btn btn-danger btn-xs" [routerLink]="['/admin/sales-management/sales', vendor.salesId]" title="">Edit</button>
+                      <button class="btn btn-primary btn-xs" type="button" data-original-title="btn btn-danger btn-xs" [routerLink]="['/admin/vendor-management/vendor-details', vendor.salesId]" title="">Edit</button>
                     </td>
                   </tr>
                 

@@ -12,7 +12,9 @@ interface User {
 }
 
 export interface Vendor extends User {
+    id: string,
     vendorId:string,
+    vendorID:string,
     salesId:string,
     isSuspended: boolean,
     suspendedUntil: string,
