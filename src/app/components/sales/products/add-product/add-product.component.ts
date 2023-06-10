@@ -5,8 +5,8 @@ import {
   category,
   CategoryList,
   gender,
-  GenderList,
-  Product,
+  GenderList, pantsSubCategory,
+  Product, shoesSubCategory,
   subCategory, SubCategoryList
 } from "../../../../shared/interface/product/product";
 import {VendorService} from "../../../../shared/services/vendor/vendor.service";
@@ -24,7 +24,9 @@ export class AddProductComponent implements OnInit {
   product: Product
 
   Category: CategoryList[] = category
-  SubCategory: SubCategoryList[] = subCategory
+  SubCategory: SubCategoryList[] = []
+  PantsSubCategory: SubCategoryList[] = pantsSubCategory
+  ShoesSubCategory: SubCategoryList[] = shoesSubCategory
   Gender: GenderList[] = gender
 
   createProductForm: FormGroup;
@@ -64,7 +66,21 @@ export class AddProductComponent implements OnInit {
   addInput(controlName: string, e:Event){
     // console.log((e.target as HTMLSelectElement).value)
     this.createProductForm.get(controlName)?.patchValue((e.target as HTMLInputElement).value)
-}
+  }
+
+  updateSubCategory(e:Event){
+    switch ((e.target as HTMLInputElement).value) {
+      case 'pants':
+        this.SubCategory = this.PantsSubCategory
+        break
+      case 'shoes':
+        this.SubCategory = this.ShoesSubCategory
+        break
+      default:
+        this.SubCategory = []
+        this.createProductForm.get('SubCategory')?.setValue(null)
+    }
+  }
 
   onSubmit(){
     this.validate = true;
