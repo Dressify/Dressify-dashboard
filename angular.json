@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "zeta": {
+    "dressify": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -18,7 +18,7 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "allowedCommonJsDependencies": [],
-            "outputPath": "dist/zeta",
+            "outputPath": "dist/dressify",
             "baseHref": "/",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -85,10 +85,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "zeta:build:production"
+              "browserTarget": "dressify:build:production"
             },
             "development": {
-              "browserTarget": "zeta:build:development"
+              "browserTarget": "dressify:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -96,7 +96,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "zeta:build"
+            "browserTarget": "dressify:build"
           }
         },
         "test": {

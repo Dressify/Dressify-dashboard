@@ -1,14 +1,14 @@
 {
-  "name": "zeta",
+  "name": "dressify",
   "version": "0.0.0",
   "homepage": "https://webiots.co.in/zeta/",
   "scripts": {
     "ng": "ng",
     "start": "node --max_old_space_size=8192 ./node_modules/@angular/cli/bin/ng serve",
-    "build": "ng build --base-href=/zeta/",
+    "build": "ng build --base-href=/dressify/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "run-build": "lite-server --baseDir='dist/zeta'"
+    "run-build": "lite-server --baseDir='dist/dressify'"
   },
   "private": true,
   "dependencies": {
