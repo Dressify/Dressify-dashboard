@@ -27,6 +27,8 @@ import { SearchComponent } from "./components/header/header/search/search.compon
 import { SearchCustomizeComponent } from "./components/header/header/search-customize/search-customize.component";
 import {AppModule} from "../app.module";
 import {TruncatePipe} from "./pipe/truncate.pipe";
+import {KnowledgebaseComponent} from "./components/knowledgebases/knowledgebase/knowledgebase.component";
+import {HelpBoardComponent} from "./components/knowledgebases/help-board/help-board.component";
 
 @NgModule({
   declarations: [
@@ -47,10 +49,12 @@ import {TruncatePipe} from "./pipe/truncate.pipe";
     FullComponent,
     SearchComponent,
     SearchCustomizeComponent,
-    TruncatePipe
+    TruncatePipe,
+    KnowledgebaseComponent,
+    HelpBoardComponent
   ],
     imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule, NgbModule, AngularSvgIconModule.forRoot()],
   providers: [NavService, DecimalPipe],
-  exports: [RouterModule, BreadcrumbComponent, TapToTopComponent, FeatherIconComponent, ContentComponent, LoaderComponent, NgbModule, AngularSvgIconModule, TruncatePipe],
+  exports: [RouterModule, BreadcrumbComponent, TapToTopComponent, FeatherIconComponent, ContentComponent, LoaderComponent, NgbModule, AngularSvgIconModule, TruncatePipe, KnowledgebaseComponent, HelpBoardComponent],
 })
 export class SharedModule {}
