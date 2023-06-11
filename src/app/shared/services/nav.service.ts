@@ -89,7 +89,7 @@ export class NavService {
   }
 
   VendorMenu: Menu[] = [
-    { path: "/vendor/dashboard", icon: "home", title: "Dashboard", type: "link" },
+    { path: "/vendor/dashboard", icon: "home", title: "Home", type: "link" },
     {
       title: "Product",
       icon: "gallery",
@@ -114,7 +114,7 @@ export class NavService {
   ];
 
   SalesMenu: Menu[] = [
-    { path: "/sales/dashboard", icon: "home", title: "Dashboard", type: "link" },
+    { path: "/sales/dashboard", icon: "home", title: "Home", type: "link" },
     {
       title: "Product",
       icon: "gallery",
@@ -139,7 +139,7 @@ export class NavService {
   ];
 
   AdminMenu: Menu[] = [
-    { path: "/admin/dashboard", icon: "home", title: "Dashboard", type: "link" },
+    { path: "/admin/dashboard", icon: "home", title: "Home", type: "link" },
     {
       title: "Sales Management",
       icon: "editors",
@@ -183,7 +183,7 @@ export class NavService {
   ];
 
   SuperAdminMenu: Menu[] = [
-    { path: "/super-admin/dashboard", icon: "home", title: "Dashboard", type: "link" },
+    { path: "/super-admin/dashboard", icon: "home", title: "Home", type: "link" },
     {
       title: "Admin Management",
       icon: "editors",
