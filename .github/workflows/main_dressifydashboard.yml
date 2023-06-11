@@ -58,4 +58,4 @@ jobs:
           app-name: 'dressifydashboard'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_16983A3A1C0E480B979B88DBE5339AC5 }}
-          package: ./dist/zeta
+          package: ./dist/dressify
