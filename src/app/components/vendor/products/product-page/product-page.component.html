@@ -48,7 +48,7 @@
                                         <td> <b>Category :</b></td>
                                         <td>{{product.category}}</td>
                                     </tr>
-                                    <tr *ngIf="!product.color">
+                                    <tr *ngIf="product.color && product.color !== 'null'">
                                         <td> <b>Color :</b></td>
                                         <td>{{product.color}}</td>
                                     </tr>
@@ -66,7 +66,7 @@
                                         <td> <b>Number of purchases :</b></td>
                                         <td>{{product.purchases}}</td>
                                     </tr>
-                                    <tr *ngIf="!product.subCategory">
+                                    <tr *ngIf="product.subCategory">
                                         <td> <b>SubCategory :</b></td>
                                         <td>{{product.subCategory}}</td>
                                     </tr>

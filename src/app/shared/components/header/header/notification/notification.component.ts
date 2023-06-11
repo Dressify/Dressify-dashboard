@@ -6,6 +6,7 @@ import {AuthService} from "../../../../services/auth/auth.service";
 import {SalesService} from "../../../../services/sales/sales.service";
 import {Product} from "../../../../interface/product/product";
 import {AdminService} from "../../../../services/admin/admin.service";
+import {SharedService} from "../../../../services/shared.service";
 
 @Component({
   selector: 'app-notification',
@@ -18,10 +19,14 @@ export class NotificationComponent implements OnInit {
   orders: Order[]
   total: number
 
-  constructor(public auth: AuthService, private vendor: VendorService, private sales: SalesService, private admin: AdminService) { }
+  constructor(public auth: AuthService, private vendor: VendorService, private sales: SalesService, private admin: AdminService,private sharedService: SharedService) { }
 
   ngOnInit(): void {
     this.getOrders(this.auth.getUserRole())
+
+    this.sharedService.methodCalled$.subscribe(() => {
+      this.getOrders(this.auth.getUserRole());
+    });
   }
 
   getOrders(user: string|null){

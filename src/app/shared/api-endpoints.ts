@@ -1,5 +1,6 @@
 export const apiEndpoints = {
   baseUrl: 'https://dressify-back-end.azurewebsites.net/api/',
+  // baseUrl: 'https://localhost:7115/api/',
   admins: {
     ViewAdminProfile: 'Admins/ViewAdminProfile',
     createSales: `Admins/CreateSales`,

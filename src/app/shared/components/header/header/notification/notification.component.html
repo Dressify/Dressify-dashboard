@@ -17,7 +17,7 @@
        <div [routerLink]="auth.getUserRole() === 'Vendor'? ['vendor/orders/order', order.orderId, order.product.productId] : ['sales/orders/order', order.orderId, order.product.productId]" class="media">
          <img width="36" height="36" class="img-fluid rounded-1" [src]="order.product.productImages[0].imageUrl" [alt]="order.productName">
          <div class="media-body ms-3">
-           <h5> <a class="f-14 m-0" [routerLink]="auth.getUserRole() === 'Vendor'? ['vendor/orders/order-details', order.orderId] : ['sales/orders/order-details', order.orderId]">{{order.productName}}</a></h5>
+           <h5> <a class="f-14 m-0" [routerLink]="auth.getUserRole() === 'Vendor'? ['vendor/orders/order', order.orderId, order.product.productId] : ['sales/orders/order', order.orderId, order.product.productId]">{{order.productName}}</a></h5>
            <p>{{order.product.description | truncate: 20}} </p><span>{{order.date | date}}</span>
          </div>
        </div>

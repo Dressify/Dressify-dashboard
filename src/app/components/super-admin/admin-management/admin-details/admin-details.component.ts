@@ -78,9 +78,9 @@ export class AdminDetailsComponent implements OnInit {
     const formData = new FormData();
     formData.append('photo', photo);
 
-    const headers = new HttpHeaders()
+    let headers = new HttpHeaders()
     if (this.admin?.adminId){
-      headers.set('adminId', this.admin?.adminId)
+      headers = headers.set('adminId', this.admin?.adminId)
     }
 
     this.sadmin.modifyAdminPhoto(headers, formData).subscribe(data =>{

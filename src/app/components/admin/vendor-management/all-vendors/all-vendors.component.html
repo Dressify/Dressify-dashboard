@@ -35,7 +35,7 @@
                         <h6>{{vendor.salesName}}</h6></a></td>
                       <td class="sorting_1">{{vendor.email}}</td>
                       <td class="sorting_1">{{vendor.storeName}}</td>
-                      <td [ngClass]="vendor.isSuspended? 'text-danger' : 'text-success'" class="sorting_1">{{vendor.isSuspended? 'Suspended' : 'Not Suspended'}}</td>
+                      <td [ngClass]="vendor.isSuspended? 'text-danger' : 'text-success'" class="sorting_1">{{vendor.isSuspended? 'Suspended' : 'Active'}}</td>
                     <td class="sorting_1">
                       <button class="btn btn-primary btn-xs" type="button" data-original-title="btn btn-danger btn-xs" [routerLink]="['/admin/vendor-management/vendor-details', vendor.salesId]" title="">Edit</button>
                     </td>

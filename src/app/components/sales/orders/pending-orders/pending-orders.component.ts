@@ -14,6 +14,7 @@ import {VendorService} from "../../../../shared/services/vendor/vendor.service";
 import {products} from "../../../../shared/data/components/widgest/general/general";
 import {Order} from "../../../../shared/interface/user/user";
 import {SalesService} from "../../../../shared/services/sales/sales.service";
+import {SharedService} from "../../../../shared/services/shared.service";
 @Component({
   selector: 'app-all-products',
   templateUrl: './pending-orders.component.html',
@@ -30,11 +31,12 @@ export class PendingOrdersComponent {
   orders: Order[]
   total: number
 
-  constructor(private sales: SalesService) {
+  constructor(private sales: SalesService, private shared:SharedService) {
   }
 
   ngOnInit(): void {
     this.getOrders()
+    this.shared.callMethod()
   }
 
   onPageChange(e:number){

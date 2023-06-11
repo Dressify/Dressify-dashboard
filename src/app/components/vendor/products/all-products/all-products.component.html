@@ -25,6 +25,7 @@
                                     <th class="sorting_asc" scope="col" >Category</th>
                                     <th class="sorting_asc" scope="col" >Stock</th>
                                     <th class="sorting_asc" scope="col" >Price</th>
+                                    <th class="sorting_asc" scope="col" >Status</th>
                                     <th class="sorting_asc" scope="col" >Action</th>
                                 </tr>
                                 </thead>
@@ -38,6 +39,7 @@
                                     <td class="sorting_1">{{product.category}}</td>
                                     <td class="sorting_1">{{product.quantity}}</td>
                                     <td class="sorting_1">{{product.price}}</td>
+                                    <td [ngClass]="product.isSuspended? 'text-danger' : 'text-success'" class="sorting_1">{{product.isSuspended? 'Suspended' : 'Active'}}</td>
                                     <td class="sorting_1">
                                         <button class="btn btn-primary btn-xs" type="button" data-original-title="btn btn-danger btn-xs" [routerLink]="['/vendor/product/product-details', product.productId]" title="">Edit</button>
                                     </td>

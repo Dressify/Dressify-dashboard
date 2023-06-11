@@ -6,6 +6,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {Product} from "../../../../shared/interface/product/product";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Order} from "../../../../shared/interface/user/user";
+import {SharedService} from "../../../../shared/services/shared.service";
 
 
 
@@ -41,7 +42,7 @@ export class OrderDetailsComponent implements OnInit {
     }
   }
 
-  constructor(public config: NgbRatingConfig, private vendor:VendorService, private route:ActivatedRoute, private router:Router) {
+  constructor(public config: NgbRatingConfig, private vendor:VendorService, private route:ActivatedRoute, private router:Router, private shared:SharedService) {
     config.max = 5;
     config.readonly = true;
   }
@@ -82,6 +83,7 @@ export class OrderDetailsComponent implements OnInit {
 
     this.vendor.confirmOrder(params).subscribe(data =>{
       console.log(data)
+      this.shared.callMethod()
       this.getOrder()
     },error => {
       console.log(error)
