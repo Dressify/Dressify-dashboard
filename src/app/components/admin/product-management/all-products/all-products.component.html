@@ -35,7 +35,7 @@
                                         <h6>{{product.product.productName}}</h6></a></td>
                                     <td class="sorting_1">{{product.product.type}}</td>
                                     <td class="sorting_1">{{product.product.category}}</td>
-                                    <td class="sorting_1" [ngClass]="product.product.isSuspended ? 'text-danger' : 'text-success'">{{product.product.isSuspended ? 'Suspended' : 'Not Suspended'}}</td>
+                                    <td class="sorting_1" [ngClass]="product.product.isSuspended ? 'text-danger' : 'text-success'">{{product.product.isSuspended ? 'Suspended' : 'Active'}}</td>
                                     <td class="sorting_1">
                                         <button class="btn btn-primary btn-xs" type="button" data-original-title="btn btn-danger btn-xs" [routerLink]="['/admin/product-management/product-details', product.product.productId]" title="">View</button>
                                     </td>
